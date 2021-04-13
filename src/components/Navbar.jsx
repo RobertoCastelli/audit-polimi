@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../images/logo.png'
+import icona from '../images/icona.png'
 import { Link, NavLink } from 'react-router-dom'
 import { FcAddDatabase, FcReadingEbook, FcViewDetails } from 'react-icons/fc'
 
@@ -7,9 +7,9 @@ const Navbar = () => {
 	return (
 		<>
 			<nav className='navbar-wrapper'>
-				<div className='navbar-logo'>
+				<div className='navbar-icona'>
 					<Link to='/'>
-						<img className='logo' src={logo} alt='logo' />
+						<img className='icona' src={icona} alt='icona' />
 					</Link>
 				</div>
 				<ul className='navbar-ul'>

@@ -8,6 +8,7 @@
 :root {
 	--dark: rgb(51, 51, 51);
 	--white: rgb(244, 244, 244);
+	--real-white: rgb(255, 255, 255);
 	--lightgrey: rgb(211, 211, 211);
 	--green: rgb(95, 158, 160);
 }
@@ -16,7 +17,7 @@ body {
 	margin: 0;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 0.8rem;
-	letter-spacing: 0.07rem;
+	letter-spacing: 0.05rem;
 	color: var(--dark);
 	background-color: var(--white);
 	-webkit-font-smoothing: antialiased;
@@ -59,11 +60,10 @@ code {
 	text-transform: uppercase;
 }
 
-.logo {
-	width: 90px;
-	height: 80px;
+.icona {
 	cursor: pointer;
-	border: 1px solid var(--lightgrey);
+	width: 80px;
+	height: 80px;
 }
 
 /**
@@ -93,4 +93,46 @@ code {
 }
 .navbar-li-icon {
 	text-align: center;
+}
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* AUDIT
+/*~~~~~~~~~~~~~~~//
+**/
+.audit-main-page-wrapper {
+	display: grid;
+	font-family: 'Times New Roman', Times, serif;
+	background-color: var(--real-white);
+	padding: 0.5rem;
+	grid-template-columns: 100px 1fr;
+	grid-template-areas:
+		'logo .'
+		'. oggetto'
+		'. verbale'
+		'. referenti';
+}
+.audit-main-page-oggetto {
+	grid-area: oggetto;
+	text-transform: uppercase;
+
+	line-height: 1.5rem;
+	font-weight: bold;
+	margin-top: 1rem;
+}
+.audit-main-page-giorno-verifica-verbale {
+	grid-area: verbale;
+	text-decoration: underline;
+	text-transform: capitalize;
+	text-align: center;
+	font-weight: bold;
+	margin: 1rem;
+}
+.audit-main-page-referenti {
+	grid-area: referenti;
+}
+.logo {
+	grid-area: logo;
+	width: 100px;
+	height: 80px;
 }
