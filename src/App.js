@@ -1,32 +1,32 @@
 import React from 'react'
 // ROUTER
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 // COMPONENTS
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
-import Database from './components/Database'
-import Audit from './components/Audit'
+import SupplierForm from './components/SupplierForm'
+import AuditForm from './components/audit/AuditForm'
 import Auth from './components/Auth'
+import AuditMainPage from './components/audit/AuditMainPage'
 
 function App() {
 	return (
-		<BrowserRouter>
-			<div className='container'>
-				<div className='content'>
-					<Navbar />
-					<Header />
-					<Switch>
-						<Route exact path='/' component={Home} />
-						<Route path='/database' component={Database} />
-						<Route path='/audit' component={Audit} />
-						<Route path='/auth' component={Auth} />
-					</Switch>
-				</div>
-				<Footer />
+		<div className='container'>
+			<div className='content'>
+				<Navbar />
+				<Header />
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route path='/database' component={SupplierForm} />
+					<Route path='/audit' component={AuditForm} />
+					<Route path='/auth' component={Auth} />
+					<Route parth='/audit-main-page' component={AuditMainPage} />
+				</Switch>
 			</div>
-		</BrowserRouter>
+			<Footer />
+		</div>
 	)
 }
 
