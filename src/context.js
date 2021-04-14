@@ -7,9 +7,10 @@ const ContextProvider = (props) => {
 	// useState
 	const [ditta, setDitta] = useState('')
 	const [lotto, setLotto] = useState(0)
-	const [optionSuppliersList, setOptionSuppliersList] = useState([])
+	const [suppliersOptionList, setSuppliersOptionList] = useState([])
+	const [selectedSupplierOption, setSelectedSupplierOption] = useState('')
 
-	// ADD SUPPLIER DATA
+	// SEND SUPPLIER DATA TO DB
 	const handleSubmitSupplier = (e) => {
 		e.preventDefault()
 		db.collection('suppliers')
@@ -19,6 +20,12 @@ const ContextProvider = (props) => {
 			})
 			.then((doc) => console.log(`supplier written ID: ${doc.id}`))
 			.catch((error) => console.log(`error occured: ${error.message}`))
+	}
+
+	// SEND AUDIT-FORM DATA TO AUDIT-PAGE
+	const handleSubmitAuditForm = (e) => {
+		e.preventDefault()
+		getSupplierData(selectedSupplierOption)
 	}
 
 	// DELETE ALL DB
@@ -31,10 +38,19 @@ const ContextProvider = (props) => {
 				.catch((error) => console.log(`error occured: ${error.message}`))
 	}
 
-	// GET SUPPLIER LIST
+	// GET SUPPLIER DATA
+	const getSupplierData = (ditta) => {
+		db.collection('suppliers')
+			.where('ditta', '==', ditta)
+			.onSnapshot((snapshot) =>
+				snapshot.docs.map((doc) => console.log(doc.data()))
+			)
+	}
+
+	// GET SUPPLIER OPTION LIST
 	useEffect(() => {
 		db.collection('suppliers').onSnapshot((snapshot) =>
-			setOptionSuppliersList(snapshot.docs.map((doc) => [doc.data().ditta]))
+			setSuppliersOptionList(snapshot.docs.map((doc) => [doc.data().ditta]))
 		)
 	}, [])
 
@@ -47,8 +63,10 @@ const ContextProvider = (props) => {
 				lotto,
 				setLotto,
 				handleSubmitSupplier,
-				optionSuppliersList,
+				suppliersOptionList,
 				deleteAllDb,
+				handleSubmitAuditForm,
+				setSelectedSupplierOption,
 			}}>
 			{props.children}
 		</DataContext.Provider>
