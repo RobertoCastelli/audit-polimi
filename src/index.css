@@ -46,7 +46,7 @@ footer {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-	max-width: 700px;
+	max-width: 768px;
 	padding: 0.5rem;
 	margin: auto;
 }
@@ -114,3 +114,51 @@ footer {
 /* SUPPLIER FORM
 /*~~~~~~~~~~~~~~~~//
 **/
+.supplier-form-title {
+	text-transform: uppercase;
+	margin: 3rem;
+}
+.supplier-form-wrapper {
+	text-align: center;
+}
+.supplier-form-div {
+	margin: 1rem;
+}
+textarea {
+	width: 100%;
+	height: 100%;
+}
+input,
+textarea,
+button {
+	border: 0;
+	outline: 0;
+	padding: 1rem;
+	border-radius: 1rem;
+	background-color: var(--white);
+	letter-spacing: 0.05rem;
+	font-family: 'Montserrat', sans-serif;
+}
+input,
+textarea {
+	box-shadow: 2px 2px 3px inset var(--lightgrey),
+		-5px -5px 10px inset var(--real-white);
+	transition: all 0.2s ease-in-out;
+}
+input:focus,
+textarea:focus {
+	box-shadow: 1px 1px 2px inset var(--lightgrey),
+		-1px -1px 2px inset var(--real-white);
+}
+button {
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	box-shadow: -5px -5px 10px var(--real-white), 5px 5px 20px var(--lightgrey);
+}
+button:hover {
+	border: 1px solid var(--lightgrey);
+}
+button:active {
+	box-shadow: 1px 1px 2px inset var(--real-white),
+		-1px -1px 2px inset var(--lightgrey);
+}

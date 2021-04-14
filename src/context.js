@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import firebase from 'firebase/app'
 import { db } from './firebase'
 
 export const DataContext = React.createContext()
 
 const ContextProvider = (props) => {
-	// useState
+	// ANAGRAFICA SUPPLIER
 	const [ditta, setDitta] = useState('')
-	const [lotto, setLotto] = useState(0)
+	const [lotto, setLotto] = useState('')
+	const [cig, setCig] = useState('')
+	const [oggetto, setOggetto] = useState('')
+
+	// AUDIT-FORM
 	const [suppliersOptionList, setSuppliersOptionList] = useState([])
 	const [selectedSupplierOption, setSelectedSupplierOption] = useState('')
+
+	// GET DATE
+	const today = new Date().toISOString().substring(0, 10)
+	const timestamp = firebase.firestore.FieldValue.serverTimestamp()
 
 	// SEND SUPPLIER DATA TO DB
 	const handleSubmitSupplier = (e) => {
@@ -16,7 +25,10 @@ const ContextProvider = (props) => {
 		db.collection('suppliers')
 			.add({
 				ditta,
+				cig,
 				lotto,
+				oggetto,
+				createdAt: timestamp,
 			})
 			.then((doc) => console.log(`supplier written ID: ${doc.id}`))
 			.catch((error) => console.log(`error occured: ${error.message}`))
@@ -62,6 +74,10 @@ const ContextProvider = (props) => {
 				setDitta,
 				lotto,
 				setLotto,
+				cig,
+				setCig,
+				oggetto,
+				setOggetto,
 				handleSubmitSupplier,
 				suppliersOptionList,
 				deleteAllDb,

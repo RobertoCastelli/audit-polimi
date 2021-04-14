@@ -4,7 +4,10 @@ const Header = () => {
 	return (
 		<div className='header-wrapper'>
 			<h1>audit polimi</h1>
-			<p>react audit generator</p>
+			<p>
+				<small>react audit generator</small>
+			</p>
+			<hr />
 		</div>
 	)
 }
