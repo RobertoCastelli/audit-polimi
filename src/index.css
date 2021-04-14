@@ -33,6 +33,10 @@ code {
 	box-sizing: border-box;
 }
 
+footer {
+	text-align: center;
+}
+
 /**
 /*~~~~~~~~~~~~~~~//
 /* CONTAINER
@@ -60,17 +64,16 @@ code {
 	text-transform: uppercase;
 }
 
-.icona {
-	cursor: pointer;
-	width: 80px;
-	height: 80px;
-}
-
 /**
 /*~~~~~~~~~~~~~~~//
 /* NAVBAR
 /*~~~~~~~~~~~~~~~//
 **/
+.icona {
+	cursor: pointer;
+	width: 80px;
+	height: 80px;
+}
 .navbar-wrapper {
 	display: flex;
 	justify-content: space-between;
@@ -100,39 +103,14 @@ code {
 /* AUDIT
 /*~~~~~~~~~~~~~~~//
 **/
-.audit-main-page-wrapper {
-	display: grid;
-	font-family: 'Times New Roman', Times, serif;
-	background-color: var(--real-white);
-	padding: 0.5rem;
-	grid-template-columns: 100px 1fr;
-	grid-template-areas:
-		'logo .'
-		'. oggetto'
-		'. verbale'
-		'. referenti';
-}
-.audit-main-page-oggetto {
-	grid-area: oggetto;
-	text-transform: uppercase;
-
-	line-height: 1.5rem;
-	font-weight: bold;
-	margin-top: 1rem;
-}
-.audit-main-page-giorno-verifica-verbale {
-	grid-area: verbale;
-	text-decoration: underline;
-	text-transform: capitalize;
-	text-align: center;
-	font-weight: bold;
-	margin: 1rem;
-}
-.audit-main-page-referenti {
-	grid-area: referenti;
-}
 .logo {
 	grid-area: logo;
 	width: 100px;
 	height: 80px;
 }
+
+/**
+/*~~~~~~~~~~~~~~~~//
+/* SUPPLIER FORM
+/*~~~~~~~~~~~~~~~~//
+**/

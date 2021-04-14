@@ -1,13 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+// CONTEXT
+import { DataContext } from '../../context'
 
 const AuditForm = () => {
+	const { optionSuppliersList, deleteAllDb } = useContext(DataContext)
+
 	return (
 		<div>
-			<h1> AuditForm</h1>
-			<Link to=' audit-main-page'>
-				<button type='submit'>submit</button>
-			</Link>
+			<select>
+				{optionSuppliersList.map((supplier, i) => {
+					return (
+						<option key={i} value={supplier}>
+							{supplier}
+						</option>
+					)
+				})}
+			</select>
+			<button onClick={() => deleteAllDb()}>clear all</button>
 		</div>
 	)
 }
