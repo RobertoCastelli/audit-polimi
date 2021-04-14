@@ -21,7 +21,7 @@ const Navbar = () => {
 							<div className='navbar-li-icon'>
 								<FcAddDatabase size={20} />
 							</div>
-							<div className='navbar-li-label'>add supplier</div>
+							<div className='navbar-li-label'>suppliers</div>
 						</NavLink>
 					</li>
 					<li>
@@ -32,7 +32,7 @@ const Navbar = () => {
 							<div className='navbar-li-icon'>
 								<FcViewDetails size={20} />
 							</div>
-							<div className='navbar-li-label'>add audit</div>
+							<div className='navbar-li-label'>audit</div>
 						</NavLink>
 					</li>
 					<li>

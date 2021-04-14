@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 // CONTEXT
 import { DataContext } from '../context'
 // REACT ICONS
-import { FcMultipleInputs } from 'react-icons/fc'
+import { FcMultipleInputs, FcBusinessman, FcPlus } from 'react-icons/fc'
 
 const SupplierForm = () => {
 	const {
@@ -14,6 +14,8 @@ const SupplierForm = () => {
 		setCig,
 		oggetto,
 		setOggetto,
+		referenti,
+		setReferenti,
 		handleSubmitSupplier,
 	} = useContext(DataContext)
 
@@ -21,38 +23,50 @@ const SupplierForm = () => {
 		<div className='supplier-form-wrapper'>
 			<h3 className='supplier-form-title'>add new supplier</h3>
 			<form onSubmit={handleSubmitSupplier}>
-				<div className='supplier-form-div'>
+				<div className='supplier-form-ditta'>
 					<input
 						placeholder='ditta'
 						type='text'
-						name='ditta'
 						value={ditta}
 						onChange={(e) => setDitta(e.target.value)}
 					/>
 				</div>
-				<div className='supplier-form-div'>
+				<div className='supplier-form-lotto'>
 					<input
 						placeholder='lotto'
 						type='number'
-						name='lotto'
 						value={lotto}
 						onChange={(e) => setLotto(e.target.value)}
 					/>
 				</div>
-				<div className='supplier-form-div'>
+				<div className='supplier-form-cig'>
 					<input
 						placeholder='c.i.g.'
 						type='text'
-						name='cig'
 						value={cig}
 						onChange={(e) => setCig(e.target.value)}
 					/>
 				</div>
-				<div className='supplier-form-div'>
+				<div className='supplier-form-referenti'>
+					<input
+						placeholder='nome'
+						className='supplier-form-nome'
+						type='text'
+					/>
+					<input
+						placeholder='cognome'
+						className='supplier-form-cognome'
+						type='text'
+					/>
+					<button className='supplier-form-add'>
+						<FcBusinessman size={15} />
+						<FcPlus size={15} />
+					</button>
+				</div>
+				<div className='supplier-form-oggetto'>
 					<textarea
 						placeholder='accordo quadro'
 						type='text'
-						name='oggetto'
 						cols='20'
 						rows='20'
 						value={oggetto}
@@ -60,7 +74,7 @@ const SupplierForm = () => {
 					/>
 				</div>
 				<button type='submit'>
-					<FcMultipleInputs size={20} />
+					<FcMultipleInputs size={30} />
 				</button>
 			</form>
 		</div>

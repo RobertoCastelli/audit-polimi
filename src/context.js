@@ -10,6 +10,7 @@ const ContextProvider = (props) => {
 	const [lotto, setLotto] = useState('')
 	const [cig, setCig] = useState('')
 	const [oggetto, setOggetto] = useState('')
+	const [referenti, setReferenti] = useState({ nome: '', cognome: '' })
 
 	// AUDIT-FORM
 	const [suppliersOptionList, setSuppliersOptionList] = useState([])
@@ -28,6 +29,7 @@ const ContextProvider = (props) => {
 				cig,
 				lotto,
 				oggetto,
+				referenti: { nome: 'Roberto', cognome: 'Castelli' },
 				createdAt: timestamp,
 			})
 			.then((doc) => console.log(`supplier written ID: ${doc.id}`))
@@ -70,6 +72,7 @@ const ContextProvider = (props) => {
 	return (
 		<DataContext.Provider
 			value={{
+				today,
 				ditta,
 				setDitta,
 				lotto,
@@ -78,6 +81,8 @@ const ContextProvider = (props) => {
 				setCig,
 				oggetto,
 				setOggetto,
+				referenti,
+				setReferenti,
 				handleSubmitSupplier,
 				suppliersOptionList,
 				deleteAllDb,
