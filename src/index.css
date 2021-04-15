@@ -100,18 +100,21 @@ footer {
 
 /**
 /*~~~~~~~~~~~~~~~~//
-/* SUPPLIER FORM
-/* AUDIT FORM
+/* HOME
+/* SUPPLIER-FORM
+/* AUDIT-FORM
 /*~~~~~~~~~~~~~~~~//
 **/
 .supplier-form-wrapper,
-.audit-form-wrapper {
+.audit-form-wrapper,
+.home-wrapper {
 	max-width: 320px;
 	margin: auto;
 	text-align: center;
 }
 .supplier-form-title,
-.audit-form-title {
+.audit-form-title,
+.home-title {
 	text-transform: uppercase;
 	margin: 3rem;
 }
@@ -190,7 +193,7 @@ button:active {
 
 /**
 /*~~~~~~~~~~~~~~~//
-/* AUDIT
+/* AUDIT-FORM
 /*~~~~~~~~~~~~~~~//
 **/
 .logo {

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 // REACT ICONS
-import { FcServices, FcViewDetails } from 'react-icons/fc'
+import { FcAdvance, FcSurvey } from 'react-icons/fc'
 // CONTEXT
 import { DataContext } from '../../context'
 
-const AuditForm = () => {
+const AddAudit = () => {
 	const {
 		giorno,
 		setGiorno,
@@ -23,6 +23,7 @@ const AuditForm = () => {
 			<form onSubmit={handleSubmitAuditForm}>
 				<div className='audit-form-ditta'>
 					<select onChange={(e) => setSelectedSupplierOption(e.target.value)}>
+						<option>choose supplier</option>
 						{suppliersOptionList.map((supplier, i) => {
 							return (
 								<option key={i} value={supplier}>
@@ -58,12 +59,12 @@ const AuditForm = () => {
 					</select>
 				</div>
 				<button type='submit'>
-					<FcServices size={20} />
-					<FcViewDetails size={20} />
+					<FcSurvey size={20} />
+					<FcAdvance size={20} />
 				</button>
 			</form>
 		</div>
 	)
 }
 
-export default AuditForm
+export default AddAudit

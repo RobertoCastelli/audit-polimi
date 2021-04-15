@@ -6,8 +6,8 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
-import SupplierForm from './components/SupplierForm'
-import AuditForm from './components/audit/AuditForm'
+import AddSupplier from './components/AddSupplier'
+import AddAudit from './components/audit/AddAudit'
 import Auth from './components/Auth'
 import AuditMainPage from './components/audit/AuditMainPage'
 
@@ -19,10 +19,10 @@ function App() {
 				<Header />
 				<Switch>
 					<Route exact path='/' component={Home} />
-					<Route path='/database' component={SupplierForm} />
-					<Route path='/audit' component={AuditForm} />
+					<Route path='/database' component={AddSupplier} />
+					<Route path='/audit' component={AddAudit} />
 					<Route path='/auth' component={Auth} />
-					<Route parth='/audit-main-page' component={AuditMainPage} />
+					<Route parth='/audit-page' component={AuditMainPage} />
 				</Switch>
 			</div>
 			<Footer />

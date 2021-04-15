@@ -16,37 +16,15 @@ const ContextProvider = (props) => {
 	const [lotto, setLotto] = useState('')
 	const [cig, setCig] = useState('')
 	const [oggetto, setOggetto] = useState('')
-	const [referenti, setReferenti] = useState({ nome: '', cognome: '' })
+	const [supplierNome, setSupplierNome] = useState('')
+	const [supplierCognome, setSupplierCognome] = useState('')
 
 	// AUDIT-FORM
 	const [suppliersOptionList, setSuppliersOptionList] = useState([])
 	const [selectedSupplierOption, setSelectedSupplierOption] = useState('')
 	const [giorno, setGiorno] = useState(today)
 	const [orario, setOrario] = useState(time)
-	const [selectedEdificiOption, setSelectedEdificiOption] = useState('')
-
-	// SEND SUPPLIER DATA TO DB
-	const handleSubmitSupplier = (e) => {
-		e.preventDefault()
-		db.collection('suppliers')
-			.add({
-				ditta,
-				cig,
-				lotto,
-				oggetto,
-				referenti: { nome: 'Roberto', cognome: 'Castelli' },
-				createdAt: timestamp,
-			})
-			.then((doc) => console.log(`supplier written ID: ${doc.id}`))
-			.catch((error) => console.log(`error occured: ${error.message}`))
-	}
-
-	// SEND AUDIT-FORM DATA TO AUDIT-PAGE
-	const handleSubmitAuditForm = (e) => {
-		e.preventDefault()
-		getSupplierData(selectedSupplierOption)
-		console.log(selectedEdificiOption, giorno, orario)
-	}
+	const [selectedEdificiOption, setSelectedEdificiOption] = useState('b1')
 
 	// DELETE ALL DB
 	const deleteAllDb = () => {
@@ -58,7 +36,36 @@ const ContextProvider = (props) => {
 				.catch((error) => console.log(`error occured: ${error.message}`))
 	}
 
-	// GET SUPPLIER DATA
+	// SEND SUPPLIER DATA TO DB
+	const handleSubmitSupplier = (e) => {
+		e.preventDefault()
+		db.collection('suppliers')
+			.add({
+				ditta,
+				cig,
+				lotto,
+				oggetto,
+				referenti: { nome: { supplierNome }, cognome: { supplierCognome } },
+				createdAt: timestamp,
+			})
+			.then((doc) => alert(`supplier written ID: ${doc.id}`))
+			.catch((error) => console.log(`error occured: ${error.message}`))
+		setDitta('')
+		setLotto('')
+		setCig('')
+		setOggetto('')
+		setSupplierNome('')
+		setSupplierCognome('')
+	}
+
+	// SEND AUDIT-FORM DATA TO AUDIT-PAGE
+	const handleSubmitAuditForm = (e) => {
+		e.preventDefault()
+		console.log(selectedEdificiOption, giorno, orario, selectedSupplierOption)
+		getSupplierData(selectedSupplierOption)
+	}
+
+	// GET SUPPLIER DATA FROM DB
 	const getSupplierData = (ditta) => {
 		db.collection('suppliers')
 			.where('ditta', '==', ditta)
@@ -67,7 +74,7 @@ const ContextProvider = (props) => {
 			)
 	}
 
-	// GET SUPPLIER OPTION LIST
+	// POPULATE SUPPLIER SELECT -> OPTION LIST
 	useEffect(() => {
 		db.collection('suppliers').onSnapshot((snapshot) =>
 			setSuppliersOptionList(snapshot.docs.map((doc) => [doc.data().ditta]))
@@ -91,8 +98,10 @@ const ContextProvider = (props) => {
 				setCig,
 				oggetto,
 				setOggetto,
-				referenti,
-				setReferenti,
+				supplierNome,
+				supplierCognome,
+				setSupplierNome,
+				setSupplierCognome,
 				handleSubmitSupplier,
 				suppliersOptionList,
 				setSelectedSupplierOption,

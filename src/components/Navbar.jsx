@@ -1,7 +1,7 @@
 import React from 'react'
 import icona from '../images/icona.png'
 import { Link, NavLink } from 'react-router-dom'
-import { FcAddDatabase, FcReadingEbook, FcViewDetails } from 'react-icons/fc'
+import { FcReadingEbook, FcHome } from 'react-icons/fc'
 
 const Navbar = () => {
 	return (
@@ -15,24 +15,13 @@ const Navbar = () => {
 				<ul className='navbar-ul'>
 					<li>
 						<NavLink
-							to='/database'
+							to='/'
 							activeClassName='navbar-li-active'
 							className='navbar-li'>
 							<div className='navbar-li-icon'>
-								<FcAddDatabase size={20} />
+								<FcHome size={20} />
 							</div>
-							<div className='navbar-li-label'>suppliers</div>
-						</NavLink>
-					</li>
-					<li>
-						<NavLink
-							to='/audit'
-							activeClassName='navbar-li-active'
-							className='navbar-li'>
-							<div className='navbar-li-icon'>
-								<FcViewDetails size={20} />
-							</div>
-							<div className='navbar-li-label'>audit</div>
+							<div>home</div>
 						</NavLink>
 					</li>
 					<li>
@@ -43,7 +32,7 @@ const Navbar = () => {
 							<div className='navbar-li-icon'>
 								<FcReadingEbook size={20} />
 							</div>
-							<div className='navbar-li-label'>auth</div>
+							<div>auth</div>
 						</NavLink>
 					</li>
 				</ul>

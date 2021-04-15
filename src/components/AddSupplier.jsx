@@ -4,7 +4,7 @@ import { DataContext } from '../context'
 // REACT ICONS
 import { FcMultipleInputs, FcBusinessman, FcPlus } from 'react-icons/fc'
 
-const SupplierForm = () => {
+const AddSupplier = () => {
 	const {
 		ditta,
 		setDitta,
@@ -14,15 +14,17 @@ const SupplierForm = () => {
 		setCig,
 		oggetto,
 		setOggetto,
-		referenti,
-		setReferenti,
+		supplierNome,
+		setSupplierNome,
+		supplierCognome,
+		setSupplierCognome,
 		handleSubmitSupplier,
 	} = useContext(DataContext)
 
 	return (
 		<div className='supplier-form-wrapper'>
 			<h3 className='supplier-form-title'>add new supplier</h3>
-			<form onSubmit={handleSubmitSupplier}>
+			<form onSubmit={(e) => handleSubmitSupplier(e)}>
 				<div className='supplier-form-ditta'>
 					<input
 						placeholder='ditta'
@@ -51,11 +53,15 @@ const SupplierForm = () => {
 					<input
 						placeholder='nome'
 						className='supplier-form-nome'
+						value={supplierNome}
+						onChange={(e) => setSupplierNome(e.target.value)}
 						type='text'
 					/>
 					<input
 						placeholder='cognome'
 						className='supplier-form-cognome'
+						value={supplierCognome}
+						onChange={(e) => setSupplierCognome(e.target.value)}
 						type='text'
 					/>
 					<button type='button' className='supplier-form-add'>
@@ -81,4 +87,4 @@ const SupplierForm = () => {
 	)
 }
 
-export default SupplierForm
+export default AddSupplier
