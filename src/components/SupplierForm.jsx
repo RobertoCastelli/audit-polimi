@@ -58,7 +58,7 @@ const SupplierForm = () => {
 						className='supplier-form-cognome'
 						type='text'
 					/>
-					<button className='supplier-form-add'>
+					<button type='button' className='supplier-form-add'>
 						<FcBusinessman size={15} />
 						<FcPlus size={15} />
 					</button>

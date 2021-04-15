@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import firebase from 'firebase/app'
 import { db } from './firebase'
+import { edifici } from './edifici'
 
 export const DataContext = React.createContext()
 
 const ContextProvider = (props) => {
+	// GET DATE
+	const today = new Date().toISOString().substring(0, 10)
+	const time = new Date().toLocaleTimeString().substring(0, 5)
+	const timestamp = firebase.firestore.FieldValue.serverTimestamp()
+
 	// ANAGRAFICA SUPPLIER
 	const [ditta, setDitta] = useState('')
 	const [lotto, setLotto] = useState('')
@@ -15,10 +21,9 @@ const ContextProvider = (props) => {
 	// AUDIT-FORM
 	const [suppliersOptionList, setSuppliersOptionList] = useState([])
 	const [selectedSupplierOption, setSelectedSupplierOption] = useState('')
-
-	// GET DATE
-	const today = new Date().toISOString().substring(0, 10)
-	const timestamp = firebase.firestore.FieldValue.serverTimestamp()
+	const [giorno, setGiorno] = useState(today)
+	const [orario, setOrario] = useState(time)
+	const [selectedEdificiOption, setSelectedEdificiOption] = useState('')
 
 	// SEND SUPPLIER DATA TO DB
 	const handleSubmitSupplier = (e) => {
@@ -40,6 +45,7 @@ const ContextProvider = (props) => {
 	const handleSubmitAuditForm = (e) => {
 		e.preventDefault()
 		getSupplierData(selectedSupplierOption)
+		console.log(selectedEdificiOption, giorno, orario)
 	}
 
 	// DELETE ALL DB
@@ -72,7 +78,11 @@ const ContextProvider = (props) => {
 	return (
 		<DataContext.Provider
 			value={{
-				today,
+				giorno,
+				setGiorno,
+				orario,
+				setOrario,
+				edifici,
 				ditta,
 				setDitta,
 				lotto,
@@ -85,9 +95,10 @@ const ContextProvider = (props) => {
 				setReferenti,
 				handleSubmitSupplier,
 				suppliersOptionList,
+				setSelectedSupplierOption,
+				setSelectedEdificiOption,
 				deleteAllDb,
 				handleSubmitAuditForm,
-				setSelectedSupplierOption,
 			}}>
 			{props.children}
 		</DataContext.Provider>
