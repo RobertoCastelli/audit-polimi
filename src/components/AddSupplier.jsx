@@ -87,20 +87,10 @@ const AddSupplier = () => {
 						onChange={(e) => setOggetto(e.target.value)}
 					/>
 				</div>
-				<div className='supplier-form-buttons'>
-					<button className='btn-supplier-form-add-inputs' type='submit'>
+				<div>
+					<button type='submit'>
 						<FcMultipleInputs size={30} />
 					</button>
-					<Link to='/audit'>
-						<button className='btn-supplier-form-audit' type='button'>
-							<FcSurvey size={20} />
-						</button>
-					</Link>
-					<Link to='/'>
-						<button className='btn-supplier-form-home' type='button'>
-							<FcHome size={20} />
-						</button>
-					</Link>
 				</div>
 			</form>
 		</div>

@@ -150,25 +150,7 @@ footer {
 	margin-left: 0.5rem;
 	width: 70px;
 }
-.supplier-form-buttons {
-	display: grid;
-	column-gap: 0.5rem;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
-	grid-template-areas:
-		'add-inputs add-inputs'
-		'audit .';
-}
-.btn-supplier-form-add-inputs {
-	grid-area: add-inputs;
-	justify-content: center;
-}
-.btn-supplier-form-audit {
-	grid-area: audit;
-}
-.btn-supplier-form-home {
-	grid-area: home;
-}
+
 input,
 textarea,
 button,
