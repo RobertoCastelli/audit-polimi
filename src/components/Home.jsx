@@ -6,7 +6,7 @@ import { FcAddDatabase, FcSurvey, FcDeleteDatabase } from 'react-icons/fc'
 import { DataContext } from '../context'
 
 const Home = () => {
-	const { deleteAllDb } = useContext(DataContext)
+	const { deleteAllDb, resetAuditPage } = useContext(DataContext)
 
 	return (
 		<div className='home-wrapper'>
@@ -20,7 +20,7 @@ const Home = () => {
 				</button>
 			</Link>
 			<Link to='/audit'>
-				<button>
+				<button onClick={() => resetAuditPage()}>
 					<FcSurvey size={20} />
 					<div>
 						<small>generate an audit file</small>

@@ -144,11 +144,30 @@ footer {
 .supplier-form-cognome {
 	grid-area: cognome;
 }
-.supplier-form-add {
+.btn-supplier-form-add-ref {
 	grid-area: add-ref;
 	align-self: center;
 	margin-left: 0.5rem;
 	width: 70px;
+}
+.supplier-form-buttons {
+	display: grid;
+	column-gap: 0.5rem;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas:
+		'add-inputs add-inputs'
+		'audit .';
+}
+.btn-supplier-form-add-inputs {
+	grid-area: add-inputs;
+	justify-content: center;
+}
+.btn-supplier-form-audit {
+	grid-area: audit;
+}
+.btn-supplier-form-home {
+	grid-area: home;
 }
 input,
 textarea,
@@ -178,7 +197,7 @@ select:focus {
 		-1px -1px 2px inset var(--real-white);
 }
 button {
-	margin: 1rem 0;
+	margin-top: 1rem;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 	box-shadow: -5px -5px 10px var(--real-white), 5px 5px 20px var(--lightgrey);

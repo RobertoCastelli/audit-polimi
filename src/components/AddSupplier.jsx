@@ -1,8 +1,16 @@
 import React, { useContext } from 'react'
+// ROUTER
+import { Link } from 'react-router-dom'
 // CONTEXT
 import { DataContext } from '../context'
 // REACT ICONS
-import { FcMultipleInputs, FcBusinessman, FcPlus } from 'react-icons/fc'
+import {
+	FcMultipleInputs,
+	FcBusinessman,
+	FcPlus,
+	FcHome,
+	FcSurvey,
+} from 'react-icons/fc'
 
 const AddSupplier = () => {
 	const {
@@ -64,7 +72,7 @@ const AddSupplier = () => {
 						onChange={(e) => setSupplierCognome(e.target.value)}
 						type='text'
 					/>
-					<button type='button' className='supplier-form-add'>
+					<button type='button' className='btn-supplier-form-add-ref'>
 						<FcBusinessman size={15} />
 						<FcPlus size={15} />
 					</button>
@@ -79,9 +87,21 @@ const AddSupplier = () => {
 						onChange={(e) => setOggetto(e.target.value)}
 					/>
 				</div>
-				<button type='submit'>
-					<FcMultipleInputs size={30} />
-				</button>
+				<div className='supplier-form-buttons'>
+					<button className='btn-supplier-form-add-inputs' type='submit'>
+						<FcMultipleInputs size={30} />
+					</button>
+					<Link to='/audit'>
+						<button className='btn-supplier-form-audit' type='button'>
+							<FcSurvey size={20} />
+						</button>
+					</Link>
+					<Link to='/'>
+						<button className='btn-supplier-form-home' type='button'>
+							<FcHome size={20} />
+						</button>
+					</Link>
+				</div>
 			</form>
 		</div>
 	)

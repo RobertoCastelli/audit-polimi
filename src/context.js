@@ -10,7 +10,6 @@ const ContextProvider = (props) => {
 	const today = new Date().toISOString().substring(0, 10)
 	const time = new Date().toLocaleTimeString().substring(0, 5)
 	const timestamp = firebase.firestore.FieldValue.serverTimestamp()
-
 	// ANAGRAFICA SUPPLIER
 	const [ditta, setDitta] = useState('')
 	const [lotto, setLotto] = useState('')
@@ -18,13 +17,15 @@ const ContextProvider = (props) => {
 	const [oggetto, setOggetto] = useState('')
 	const [supplierNome, setSupplierNome] = useState('')
 	const [supplierCognome, setSupplierCognome] = useState('')
-
 	// AUDIT-FORM
 	const [suppliersOptionList, setSuppliersOptionList] = useState([])
-	const [selectedSupplierOption, setSelectedSupplierOption] = useState('')
+	const [selectedSupplier, setSelectedSupplier] = useState('')
 	const [giorno, setGiorno] = useState(today)
 	const [orario, setOrario] = useState(time)
-	const [selectedEdificiOption, setSelectedEdificiOption] = useState('b1')
+	const [selectedEdifici, setSelectedEdifici] = useState('b1')
+	const [isGenerated, setIsGenerated] = useState(false)
+	// AUDIT-PAGE
+	const [supplierData, setSupplierData] = useState([])
 
 	// DELETE ALL DB
 	const deleteAllDb = () => {
@@ -36,7 +37,13 @@ const ContextProvider = (props) => {
 				.catch((error) => console.log(`error occured: ${error.message}`))
 	}
 
-	// SEND SUPPLIER DATA TO DB
+	// RESET AUDIT-PAGE STATE
+	const resetAuditPage = () => {
+		setIsGenerated(false)
+		setSelectedSupplier('')
+	}
+
+	// ADD SUPPLIER DATA TO DB
 	const handleSubmitSupplier = (e) => {
 		e.preventDefault()
 		db.collection('suppliers')
@@ -45,11 +52,12 @@ const ContextProvider = (props) => {
 				cig,
 				lotto,
 				oggetto,
-				referenti: { nome: { supplierNome }, cognome: { supplierCognome } },
+				referenti: { nome: supplierNome, cognome: supplierCognome },
 				createdAt: timestamp,
 			})
 			.then((doc) => alert(`supplier written ID: ${doc.id}`))
 			.catch((error) => console.log(`error occured: ${error.message}`))
+		// CLEAR ALL FIELDS
 		setDitta('')
 		setLotto('')
 		setCig('')
@@ -58,20 +66,23 @@ const ContextProvider = (props) => {
 		setSupplierCognome('')
 	}
 
-	// SEND AUDIT-FORM DATA TO AUDIT-PAGE
-	const handleSubmitAuditForm = (e) => {
-		e.preventDefault()
-		console.log(selectedEdificiOption, giorno, orario, selectedSupplierOption)
-		getSupplierData(selectedSupplierOption)
-	}
-
 	// GET SUPPLIER DATA FROM DB
 	const getSupplierData = (ditta) => {
 		db.collection('suppliers')
 			.where('ditta', '==', ditta)
 			.onSnapshot((snapshot) =>
-				snapshot.docs.map((doc) => console.log(doc.data()))
+				snapshot.docs.map((doc) => setSupplierData(doc.data()))
 			)
+	}
+
+	// SEND AUDIT-FORM DATA TO AUDIT-PAGE
+	const handleSubmitAuditForm = (e) => {
+		e.preventDefault()
+		getSupplierData(selectedSupplier)
+		setOrario(orario)
+		setGiorno(giorno)
+		setSelectedEdifici(selectedEdifici)
+		setIsGenerated(true)
 	}
 
 	// POPULATE SUPPLIER SELECT -> OPTION LIST
@@ -85,11 +96,9 @@ const ContextProvider = (props) => {
 	return (
 		<DataContext.Provider
 			value={{
-				giorno,
-				setGiorno,
-				orario,
-				setOrario,
-				edifici,
+				// HOME
+				deleteAllDb,
+				// ANAGRAFICA SUPPLIER
 				ditta,
 				setDitta,
 				lotto,
@@ -99,15 +108,26 @@ const ContextProvider = (props) => {
 				oggetto,
 				setOggetto,
 				supplierNome,
-				supplierCognome,
 				setSupplierNome,
+				supplierCognome,
 				setSupplierCognome,
 				handleSubmitSupplier,
+				// AUDIT-FORM
+				orario,
+				setOrario,
+				giorno,
+				setGiorno,
 				suppliersOptionList,
-				setSelectedSupplierOption,
-				setSelectedEdificiOption,
-				deleteAllDb,
+				selectedSupplier,
+				setSelectedSupplier,
+				edifici,
+				setSelectedEdifici,
+				isGenerated,
+				resetAuditPage,
 				handleSubmitAuditForm,
+				// AUDIT-PAGE
+				supplierData,
+				selectedEdifici,
 			}}>
 			{props.children}
 		</DataContext.Provider>
