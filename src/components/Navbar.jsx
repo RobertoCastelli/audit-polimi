@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 // REACT ICONS
 import icona from '../images/icona.png'
-import { FcReadingEbook, FcHome, FcAddDatabase, FcSurvey } from 'react-icons/fc'
+import { FcKey, FcHome, FcAddDatabase, FcSurvey } from 'react-icons/fc'
 // CONTEXT
 import { DataContext } from '../context'
 
@@ -58,7 +58,7 @@ const Navbar = () => {
 							activeClassName='navbar-li-active'
 							className='navbar-li'>
 							<div className='navbar-li-icon'>
-								<FcReadingEbook size={20} />
+								<FcKey size={20} />
 							</div>
 							<div>auth</div>
 						</NavLink>

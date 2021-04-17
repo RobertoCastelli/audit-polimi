@@ -17,12 +17,14 @@ const AddAudit = () => {
 		setGiorno,
 		orario,
 		setOrario,
+		month,
 		handleSubmitAuditForm,
 		suppliersOptionList,
 		selectedSupplier,
 		setSelectedSupplier,
 		edifici,
 		setSelectedEdifici,
+		getTextMonth,
 		isGenerated,
 	} = useContext(DataContext)
 
@@ -76,7 +78,8 @@ const AddAudit = () => {
 					)}
 					{isGenerated && (
 						<Link to='/audit-page'>
-							<button>
+							{/*FIXME: da migliorare */}
+							<button onClick={() => getTextMonth(parseInt(month))}>
 								<FcAdvance size={20} />
 								<FcDocument size={20} />
 							</button>

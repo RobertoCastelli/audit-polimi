@@ -2,7 +2,14 @@ import React, { useContext } from 'react'
 // CONTEXT
 import { DataContext } from '../context'
 // REACT ICONS
-import { FcMultipleInputs, FcBusinessman, FcPlus } from 'react-icons/fc'
+import {
+	FcMultipleInputs,
+	FcDepartment,
+	FcAbout,
+	FcBusinessman,
+	FcBusinesswoman,
+	FcManager,
+} from 'react-icons/fc'
 
 const AddSupplier = () => {
 	const {
@@ -25,6 +32,9 @@ const AddSupplier = () => {
 		<div className='supplier-form-wrapper'>
 			<h3 className='supplier-form-title'>add new supplier</h3>
 			<form onSubmit={(e) => handleSubmitSupplier(e)}>
+				<div className='supplier-form-icon'>
+					<FcDepartment size={20} />
+				</div>
 				<div className='supplier-form-ditta'>
 					<input
 						placeholder='ditta'
@@ -49,36 +59,74 @@ const AddSupplier = () => {
 						onChange={(e) => setCig(e.target.value)}
 					/>
 				</div>
-				<div className='supplier-form-referenti'>
-					<input
-						placeholder='nome'
-						className='supplier-form-nome'
-						value={supplierNome}
-						onChange={(e) => setSupplierNome(e.target.value)}
-						type='text'
-					/>
-					<input
-						placeholder='cognome'
-						className='supplier-form-cognome'
-						value={supplierCognome}
-						onChange={(e) => setSupplierCognome(e.target.value)}
-						type='text'
-					/>
-					<button type='button' className='btn-supplier-form-add-ref'>
-						<FcBusinessman size={15} />
-						<FcPlus size={15} />
-					</button>
+				<div className='supplier-form-icon'>
+					<FcAbout size={20} />
 				</div>
 				<div className='supplier-form-oggetto'>
 					<textarea
 						placeholder='accordo quadro'
 						type='text'
 						cols='20'
-						rows='20'
+						rows='10'
 						value={oggetto}
 						onChange={(e) => setOggetto(e.target.value)}
 					/>
 				</div>
+				<div className='supplier-form-icon'>
+					<FcManager size={20} />
+					<FcBusinessman size={20} />
+					<FcBusinesswoman size={20} />
+				</div>
+				<ol className='supplier-form-referenti'>
+					<li>
+						<input
+							placeholder='nome'
+							className='supplier-form-nome'
+							value={supplierNome}
+							onChange={(e) => setSupplierNome(e.target.value)}
+							type='text'
+						/>
+						<input
+							placeholder='cognome'
+							className='supplier-form-cognome'
+							value={supplierCognome}
+							onChange={(e) => setSupplierCognome(e.target.value)}
+							type='text'
+						/>
+					</li>
+					<li>
+						<input
+							placeholder='nome'
+							className='supplier-form-nome'
+							value={supplierNome}
+							onChange={(e) => setSupplierNome(e.target.value)}
+							type='text'
+						/>
+						<input
+							placeholder='cognome'
+							className='supplier-form-cognome'
+							value={supplierCognome}
+							onChange={(e) => setSupplierCognome(e.target.value)}
+							type='text'
+						/>
+					</li>
+					<li>
+						<input
+							placeholder='nome'
+							className='supplier-form-nome'
+							value={supplierNome}
+							onChange={(e) => setSupplierNome(e.target.value)}
+							type='text'
+						/>
+						<input
+							placeholder='cognome'
+							className='supplier-form-cognome'
+							value={supplierCognome}
+							onChange={(e) => setSupplierCognome(e.target.value)}
+							type='text'
+						/>
+					</li>
+				</ol>
 				<div>
 					<button type='submit'>
 						<FcMultipleInputs size={30} />

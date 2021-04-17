@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import firebase from 'firebase/app'
 import { db } from './firebase'
 import { edifici } from './edifici'
+import { mesi } from './mesi'
 
 export const DataContext = React.createContext()
 
@@ -29,6 +30,7 @@ const ContextProvider = (props) => {
 	const [supplierData, setSupplierData] = useState([])
 	const [day, setDay] = useState('')
 	const [month, setMonth] = useState('')
+	const [monthText, setMonthText] = useState('')
 	const [year, setYear] = useState('')
 
 	// DELETE ALL DB
@@ -39,12 +41,6 @@ const ContextProvider = (props) => {
 				.get()
 				.then((snapshot) => snapshot.forEach((doc) => doc.ref.delete()))
 				.catch((error) => console.log(`error occured: ${error.message}`))
-	}
-
-	// RESET AUDIT-PAGE STATE
-	const resetAuditPage = () => {
-		setIsGenerated(false)
-		setSelectedSupplier('')
 	}
 
 	// ADD SUPPLIER DATA TO DB
@@ -80,10 +76,16 @@ const ContextProvider = (props) => {
 			)
 	}
 
+	// GET SELECTED TEXTUAL MONTH
+	const getTextMonth = (monthNumber) => {
+		const monthTemp = mesi.filter((mese) => monthNumber === mese.numero)
+		month !== '' && setMonthText(monthTemp[0].mese)
+	}
+
 	// SEND AUDIT-FORM DATA TO AUDIT-PAGE
 	const handleSubmitAuditForm = (e) => {
 		e.preventDefault()
-		getSupplierData(selectedSupplier)
+		getSupplierData(selectedSupplier) //FIXME: non prende dato al primo rendering. bypassato aggiungendo un button intermedio
 		setSelectedEdifici(selectedEdifici)
 		setOrario(orario)
 		setGiorno(giorno)
@@ -93,7 +95,13 @@ const ContextProvider = (props) => {
 		setIsGenerated(true)
 	}
 
-	// POPULATE SUPPLIER SELECT -> OPTION LIST
+	// RESET AUDIT-PAGE STATE TO DEFAULT
+	const resetAuditPage = () => {
+		setIsGenerated(false)
+		setSelectedSupplier('')
+	}
+
+	// POPULATE SUPPLIER SELECT -> OPTION LIST IN ADD-AUDIT
 	useEffect(() => {
 		db.collection('suppliers').onSnapshot((snapshot) =>
 			setSuppliersOptionList(snapshot.docs.map((doc) => [doc.data().ditta]))
@@ -136,6 +144,8 @@ const ContextProvider = (props) => {
 				// AUDIT-PAGE
 				supplierData,
 				selectedEdifici,
+				monthText,
+				getTextMonth,
 				day,
 				month,
 				year,

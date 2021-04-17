@@ -13,12 +13,12 @@ const AuditPage = () => {
 		supplierData,
 		orario,
 		selectedEdifici,
+		monthText,
 		day,
 		month,
 		year,
 		isGenerated,
 	} = useContext(DataContext)
-	console.log(supplierData)
 
 	const auditRef = React.useRef()
 
@@ -33,7 +33,7 @@ const AuditPage = () => {
 							verbale verifica del {day}-{month}-{year}
 						</div>
 						<div>
-							il giorno {day} del mese di {month} dell'anno {year}, alle ore{' '}
+							il giorno {day} del mese di {monthText} dell'anno {year}, alle ore{' '}
 							{orario} presso il fabbricato {selectedEdifici}, sono presenti:
 						</div>
 						<ul className='audit-page-referenti'>
@@ -66,6 +66,16 @@ const AuditPage = () => {
 							contrattuali previse:
 						</div>
 						<br />
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
 						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
 						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
 						<div>~~~~ inserire componente con checkboxes ~~~~~</div>

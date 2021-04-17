@@ -130,28 +130,9 @@ footer {
 .audit-form-edificio {
 	margin-bottom: 0.5rem;
 }
-.supplier-form-referenti {
-	display: grid;
-	grid-template-columns: 1fr 80px;
-	grid-template-rows: 1fr 1fr;
-	row-gap: 0.5rem;
-	grid-template-areas:
-		'nome add-ref'
-		'cognome add-ref';
+.supplier-form-icon {
+	margin-top: 2rem;
 }
-.supplier-form-nome {
-	grid-area: nome;
-}
-.supplier-form-cognome {
-	grid-area: cognome;
-}
-.btn-supplier-form-add-ref {
-	grid-area: add-ref;
-	align-self: center;
-	margin-left: 0.5rem;
-	width: 70px;
-}
-
 input,
 textarea,
 button,
@@ -179,6 +160,7 @@ select:focus {
 	box-shadow: 1px 1px 2px inset var(--lightgrey),
 		-1px -1px 2px inset var(--real-white);
 }
+
 button {
 	margin-top: 1rem;
 	cursor: pointer;
@@ -192,13 +174,21 @@ button:active {
 	box-shadow: 1px 1px 2px inset var(--real-white),
 		-1px -1px 2px inset var(--lightgrey);
 }
-
+ol {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	gap: 1rem;
+	margin: 0;
+}
+li input {
+	margin-bottom: 0.3rem;
+}
 /**
 /*~~~~~~~~~~~~~~~//
 /* AUDIT-FORM
 /*~~~~~~~~~~~~~~~//
 **/
-
 .audit-page-wrapper {
 	font-family: 'Courier New', Courier, monospace;
 	background-color: var(--real-white);
