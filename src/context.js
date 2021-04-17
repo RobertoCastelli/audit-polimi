@@ -23,10 +23,13 @@ const ContextProvider = (props) => {
 	const [selectedSupplier, setSelectedSupplier] = useState('')
 	const [giorno, setGiorno] = useState(today)
 	const [orario, setOrario] = useState(time)
-	const [selectedEdifici, setSelectedEdifici] = useState('b1')
+	const [selectedEdifici, setSelectedEdifici] = useState('B1')
 	const [isGenerated, setIsGenerated] = useState(false)
 	// AUDIT-PAGE
 	const [supplierData, setSupplierData] = useState([])
+	const [day, setDay] = useState('')
+	const [month, setMonth] = useState('')
+	const [year, setYear] = useState('')
 
 	// DELETE ALL DB
 	const deleteAllDb = () => {
@@ -71,7 +74,8 @@ const ContextProvider = (props) => {
 	const getSupplierData = (ditta) => {
 		db.collection('suppliers')
 			.where('ditta', '==', ditta)
-			.onSnapshot((snapshot) =>
+			.get()
+			.then((snapshot) =>
 				snapshot.docs.map((doc) => setSupplierData(doc.data()))
 			)
 	}
@@ -83,6 +87,9 @@ const ContextProvider = (props) => {
 		setSelectedEdifici(selectedEdifici)
 		setOrario(orario)
 		setGiorno(giorno)
+		setDay(giorno.substring(8))
+		setMonth(giorno.substring(6, 7))
+		setYear(giorno.substring(0, 4))
 		setIsGenerated(true)
 	}
 
@@ -129,6 +136,9 @@ const ContextProvider = (props) => {
 				// AUDIT-PAGE
 				supplierData,
 				selectedEdifici,
+				day,
+				month,
+				year,
 			}}>
 			{props.children}
 		</DataContext.Provider>

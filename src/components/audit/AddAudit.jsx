@@ -2,7 +2,12 @@ import React, { useContext } from 'react'
 // ROUTER
 import { Link } from 'react-router-dom'
 // REACT ICONS
-import { FcAdvance, FcEmptyFilter, FcDocument } from 'react-icons/fc'
+import {
+	FcAdvance,
+	FcEmptyFilter,
+	FcDocument,
+	FcServices,
+} from 'react-icons/fc'
 // CONTEXT
 import { DataContext } from '../../context'
 
@@ -65,6 +70,7 @@ const AddAudit = () => {
 				<div className='audit-form-buttons'>
 					{selectedSupplier && (
 						<button type='submit'>
+							<FcServices size={20} />
 							<FcEmptyFilter size={20} />
 						</button>
 					)}

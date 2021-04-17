@@ -1,34 +1,40 @@
 import React, { useContext } from 'react'
 import logo from '../../images/logo.png'
-// ROUTER
-import { Link } from 'react-router-dom'
+// PDF
+import ReactToPrint from 'react-to-print'
+// REACT ICONS
+import { GrDocumentPdf } from 'react-icons/gr'
+import { FcAdvance } from 'react-icons/fc'
 // CONTEXT
 import { DataContext } from '../../context'
 
 const AuditPage = () => {
 	const {
 		supplierData,
-		giorno,
 		orario,
 		selectedEdifici,
+		day,
+		month,
+		year,
 		isGenerated,
 	} = useContext(DataContext)
 	console.log(supplierData)
 
+	const auditRef = React.useRef()
+
 	return (
 		<>
-			{isGenerated ? (
-				<div className='audit-page-wrapper'>
+			{isGenerated && (
+				<div ref={auditRef} className='audit-page-wrapper'>
 					<img className='logo' src={logo} alt='logo' />
 					<div className='audit-page-content'>
 						<div className='audit-page-oggetto'>{supplierData.oggetto}</div>
-
 						<div className='audit-page-bold-italic'>
-							verbale verifica del {giorno}
+							verbale verifica del {day}-{month}-{year}
 						</div>
 						<div>
-							il giorno {giorno} dell'anno 2021, alle ore {orario} presso il
-							fabbricato {selectedEdifici}, sono presenti:
+							il giorno {day} del mese di {month} dell'anno {year}, alle ore{' '}
+							{orario} presso il fabbricato {selectedEdifici}, sono presenti:
 						</div>
 						<ul className='audit-page-referenti'>
 							<li>
@@ -59,14 +65,20 @@ const AuditPage = () => {
 							previste dal POS e che siano state svolte secondo le modalità
 							contrattuali previse:
 						</div>
-						<input type='file' name='' id='' />
 					</div>
 				</div>
-			) : (
-				<Link to='/audit'>
-					<button>generate audit</button>
-				</Link>
 			)}
+			<div className='audit-page-pdf'>
+				<ReactToPrint
+					trigger={() => (
+						<button className='btn-audit-page-pdf'>
+							<FcAdvance size={20} />
+							<GrDocumentPdf size={20} />
+						</button>
+					)}
+					content={() => auditRef.current}
+				/>
+			</div>
 		</>
 	)
 }

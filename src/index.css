@@ -200,26 +200,25 @@ button:active {
 
 .audit-page-wrapper {
 	font-family: 'Courier New', Courier, monospace;
-	margin-top: 3rem;
 	background-color: var(--real-white);
 	display: grid;
-	grid-template-columns: 100px 1fr;
+	grid-template-columns: 150px 1fr 100px;
 	grid-template-areas: 'logo audit-content';
 }
 .logo {
 	grid-area: logo;
 	margin: 1rem;
-
 	width: 100px;
 }
 .audit-page-content {
 	text-align: justify;
 	grid-area: audit-content;
-	padding: 1rem;
-	margin: 5rem 1rem;
+	margin-top: 5rem;
 }
+
 .audit-page-oggetto {
 	text-transform: uppercase;
+	font-weight: bold;
 }
 .audit-page-bold-italic {
 	margin: 1rem;
@@ -230,4 +229,11 @@ button:active {
 }
 .audit-page-section {
 	margin-top: 1rem;
+}
+.audit-page-pdf {
+	display: flex;
+	justify-content: center;
+}
+.btn-audit-page-pdf {
+	width: 320px;
 }
