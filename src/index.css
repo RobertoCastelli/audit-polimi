@@ -204,7 +204,10 @@ button:active {
 	background-color: var(--real-white);
 	display: grid;
 	grid-template-columns: 150px 1fr 100px;
-	grid-template-areas: 'logo audit-content';
+	grid-template-rows: 1fr auto;
+	grid-template-areas:
+		'logo audit-content .'
+		'logo piepagina .';
 }
 .logo {
 	grid-area: logo;
@@ -246,4 +249,17 @@ button:active {
 }
 .btn-audit-page-pdf {
 	width: 320px;
+}
+.audit-page-piepagina {
+	grid-area: piepagina;
+	align-self: flex-end;
+	text-align: left;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	font-size: 0.7rem;
+}
+.audit-page-piepagina-section {
+	width: 25%;
+	margin: 1rem;
 }
