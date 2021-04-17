@@ -9,7 +9,7 @@ import Home from './components/Home'
 import AddSupplier from './components/AddSupplier'
 import AddAudit from './components/audit/AddAudit'
 import Auth from './components/Auth'
-import AuditMainPage from './components/audit/AuditMainPage'
+import AuditPage from './components/audit/AuditPage'
 
 function App() {
 	return (
@@ -22,7 +22,7 @@ function App() {
 					<Route path='/database' component={AddSupplier} />
 					<Route path='/audit' component={AddAudit} />
 					<Route path='/auth' component={Auth} />
-					<Route parth='/audit-page' component={AuditMainPage} />
+					<Route parth='/audit-page' component={AuditPage} />
 				</Switch>
 			</div>
 			<Footer />

@@ -197,8 +197,37 @@ button:active {
 /* AUDIT-FORM
 /*~~~~~~~~~~~~~~~//
 **/
+
+.audit-page-wrapper {
+	font-family: 'Courier New', Courier, monospace;
+	margin-top: 3rem;
+	background-color: var(--real-white);
+	display: grid;
+	grid-template-columns: 100px 1fr;
+	grid-template-areas: 'logo audit-content';
+}
 .logo {
 	grid-area: logo;
+	margin: 1rem;
+
 	width: 100px;
-	height: 80px;
+}
+.audit-page-content {
+	text-align: justify;
+	grid-area: audit-content;
+	padding: 1rem;
+	margin: 5rem 1rem;
+}
+.audit-page-oggetto {
+	text-transform: uppercase;
+}
+.audit-page-bold-italic {
+	margin: 1rem;
+	text-align: center;
+	text-decoration: underline;
+	font-style: italic;
+	font-weight: bold;
+}
+.audit-page-section {
+	margin-top: 1rem;
 }

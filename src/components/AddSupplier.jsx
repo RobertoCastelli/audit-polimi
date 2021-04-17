@@ -1,16 +1,8 @@
 import React, { useContext } from 'react'
-// ROUTER
-import { Link } from 'react-router-dom'
 // CONTEXT
 import { DataContext } from '../context'
 // REACT ICONS
-import {
-	FcMultipleInputs,
-	FcBusinessman,
-	FcPlus,
-	FcHome,
-	FcSurvey,
-} from 'react-icons/fc'
+import { FcMultipleInputs, FcBusinessman, FcPlus } from 'react-icons/fc'
 
 const AddSupplier = () => {
 	const {

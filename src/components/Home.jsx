@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 // REACT ICONS
-import { FcAddDatabase, FcSurvey, FcDeleteDatabase } from 'react-icons/fc'
+import { FcDeleteDatabase } from 'react-icons/fc'
 // CONTEXT
 import { DataContext } from '../context'
 

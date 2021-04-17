@@ -10,6 +10,7 @@ const ContextProvider = (props) => {
 	const today = new Date().toISOString().substring(0, 10)
 	const time = new Date().toLocaleTimeString().substring(0, 5)
 	const timestamp = firebase.firestore.FieldValue.serverTimestamp()
+
 	// ANAGRAFICA SUPPLIER
 	const [ditta, setDitta] = useState('')
 	const [lotto, setLotto] = useState('')
@@ -79,9 +80,9 @@ const ContextProvider = (props) => {
 	const handleSubmitAuditForm = (e) => {
 		e.preventDefault()
 		getSupplierData(selectedSupplier)
+		setSelectedEdifici(selectedEdifici)
 		setOrario(orario)
 		setGiorno(giorno)
-		setSelectedEdifici(selectedEdifici)
 		setIsGenerated(true)
 	}
 
