@@ -35,6 +35,7 @@ code {
 
 footer {
 	text-align: center;
+	margin-top: 1rem;
 }
 
 /**
@@ -229,6 +230,15 @@ button:active {
 }
 .audit-page-section {
 	margin-top: 1rem;
+}
+.audit-page-firme {
+	margin-top: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.audit-page-firme p {
+	width: 100%;
 }
 .audit-page-pdf {
 	display: flex;

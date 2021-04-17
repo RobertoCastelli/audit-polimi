@@ -65,6 +65,24 @@ const AuditPage = () => {
 							previste dal POS e che siano state svolte secondo le modalità
 							contrattuali previse:
 						</div>
+						<br />
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+						<div>~~~~ inserire componente con checkboxes ~~~~~</div>
+
+						<div className='audit-page-firme'>
+							<div>
+								<p>Per il Politecnico</p>
+								<br />
+								<p>__________________</p>
+							</div>
+							<div>
+								<p>Per l'impresa</p>
+								<br />
+								<p>__________________</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			)}
