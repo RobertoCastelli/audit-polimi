@@ -7,7 +7,6 @@ import {
 	FcDepartment,
 	FcAbout,
 	FcBusinessman,
-	FcBusinesswoman,
 	FcManager,
 } from 'react-icons/fc'
 
@@ -23,8 +22,12 @@ const AddSupplier = () => {
 		setOggetto,
 		supplierNome,
 		setSupplierNome,
+		supplierNomeAlt,
+		setSupplierNomeAlt,
 		supplierCognome,
 		setSupplierCognome,
+		supplierCognomeAlt,
+		setSupplierCognomeAlt,
 		handleSubmitSupplier,
 	} = useContext(DataContext)
 
@@ -75,7 +78,6 @@ const AddSupplier = () => {
 				<div className='supplier-form-icon'>
 					<FcManager size={20} />
 					<FcBusinessman size={20} />
-					<FcBusinesswoman size={20} />
 				</div>
 				<ol className='supplier-form-referenti'>
 					<li>
@@ -98,31 +100,15 @@ const AddSupplier = () => {
 						<input
 							placeholder='nome'
 							className='supplier-form-nome'
-							value={supplierNome}
-							onChange={(e) => setSupplierNome(e.target.value)}
+							value={supplierNomeAlt}
+							onChange={(e) => setSupplierNomeAlt(e.target.value)}
 							type='text'
 						/>
 						<input
 							placeholder='cognome'
 							className='supplier-form-cognome'
-							value={supplierCognome}
-							onChange={(e) => setSupplierCognome(e.target.value)}
-							type='text'
-						/>
-					</li>
-					<li>
-						<input
-							placeholder='nome'
-							className='supplier-form-nome'
-							value={supplierNome}
-							onChange={(e) => setSupplierNome(e.target.value)}
-							type='text'
-						/>
-						<input
-							placeholder='cognome'
-							className='supplier-form-cognome'
-							value={supplierCognome}
-							onChange={(e) => setSupplierCognome(e.target.value)}
+							value={supplierCognomeAlt}
+							onChange={(e) => setSupplierCognomeAlt(e.target.value)}
 							type='text'
 						/>
 					</li>

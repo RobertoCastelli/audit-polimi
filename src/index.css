@@ -131,7 +131,7 @@ footer {
 	margin-bottom: 0.5rem;
 }
 .supplier-form-icon {
-	margin-top: 2rem;
+	margin-top: 1.5rem;
 }
 input,
 textarea,
@@ -177,7 +177,7 @@ button:active {
 ol {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 	gap: 1rem;
 	margin: 0;
 }
