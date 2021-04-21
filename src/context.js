@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
-import { db } from "./firebase";
+import logo from './images/logo.png'
+import { db, auth } from "./firebase";
 import { edifici } from "./edifici";
 import { mesi } from "./mesi";
 
@@ -34,6 +35,7 @@ const ContextProvider = (props) => {
   const [month, setMonth] = useState("");
   const [monthText, setMonthText] = useState("");
   const [year, setYear] = useState("");
+  const [uploadFile, setUploadFile] = useState(logo)
 
   // DELETE ALL DB
   const deleteAllDb = () => {
@@ -115,6 +117,16 @@ const ContextProvider = (props) => {
     );
   }, []);
 
+  // UPLOAD FILE HANDLER
+  const handleUploadFile = (e) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      reader.readyState === 2 && (setUploadFile(reader.result))
+    }
+    reader.readAsDataURL(e.target.files[0])
+  } 
+  
+
   // RENDER
   return (
     <DataContext.Provider
@@ -160,6 +172,8 @@ const ContextProvider = (props) => {
         day,
         month,
         year,
+        uploadFile,
+        handleUploadFile
       }}
     >
       {props.children}

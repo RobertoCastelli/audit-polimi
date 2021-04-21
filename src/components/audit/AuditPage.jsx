@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import logo from "../../images/logo.png";
+import React, { useContext } from "react"
+import logo from "../../images/logo.png"
 // PDF
-import ReactToPrint from "react-to-print";
+import ReactToPrint from "react-to-print"
 // REACT ICONS
-import { GrDocumentPdf } from "react-icons/gr";
-import { FcAdvance } from "react-icons/fc";
+import { GrDocumentPdf } from "react-icons/gr"
+import { FcPicture } from "react-icons/fc"
 // CONTEXT
-import { DataContext } from "../../context";
+import { DataContext } from "../../context"
 
 const AuditPage = () => {
   const {
@@ -18,9 +18,11 @@ const AuditPage = () => {
     month,
     year,
     isGenerated,
-  } = useContext(DataContext);
+    uploadFile,
+    handleUploadFile,
+  } = useContext(DataContext)
 
-  const auditRef = React.useRef();
+  const auditRef = React.useRef()
 
   return (
     <>
@@ -37,15 +39,15 @@ const AuditPage = () => {
               {orario} presso il fabbricato {selectedEdifici}, sono presenti:
             </div>
             <ul className="audit-page-referenti">
-             {(supplierData.referenti.map((ref, i) => {
-				 return (
-					 ref.nome !== '' && (
-					 <li key={i}>
-						 {ref.nome} {ref.cognome} - ditta {supplierData.ditta}
-					 </li>
-					 )
-				 )
-			 } ))}
+              {supplierData.referenti.map((ref, i) => {
+                return (
+                  ref.nome !== "" && (
+                    <li key={i}>
+                      {ref.nome} {ref.cognome} - ditta {supplierData.ditta}
+                    </li>
+                  )
+                )
+              })}
             </ul>
             <div className="audit-page-bold-italic">premesso</div>
             <div className="audit-page-section">
@@ -83,8 +85,12 @@ const AuditPage = () => {
             <div>~~~~ inserire componente con checkboxes ~~~~~</div>
             <div>~~~~ inserire componente con checkboxes ~~~~~</div>
             <div>~~~~ inserire componente con checkboxes ~~~~~</div>
-            <div>~~~~ inserire componente con checkboxes ~~~~~</div>
-            <div>~~~~ inserire componente con checkboxes ~~~~~</div>
+
+            <img
+              className="audit-page-image"
+              src={uploadFile}
+              alt="upload-file"
+            />
 
             <div className="audit-page-firme">
               <div>
@@ -118,19 +124,32 @@ const AuditPage = () => {
           </div>
         </div>
       )}
-      <div className="audit-page-pdf">
-        <ReactToPrint
-          trigger={() => (
-            <button className="btn-audit-page-pdf">
-              <FcAdvance size={20} />
-              <GrDocumentPdf size={20} />
-            </button>
-          )}
-          content={() => auditRef.current}
-        />
+      <div className="audit-page-buttons">
+        <div className="audit-page-pdf">
+          <ReactToPrint
+            trigger={() => (
+              <button className="btn-audit-page-pdf">
+                <GrDocumentPdf size={20} />
+              </button>
+            )}
+            content={() => auditRef.current}
+          />
+        </div>
+        <div className="audit-page-upload">
+          <label htmlFor="upload">
+            <input
+              type="file"
+              id="upload"
+              accept="image/*"
+              multiple
+              onChange={handleUploadFile}
+            />
+            <FcPicture size={28} />
+          </label>
+        </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default AuditPage;
+export default AuditPage
