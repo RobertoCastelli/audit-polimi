@@ -99,11 +99,22 @@ footer {
   text-align: center;
 }
 
+.home-suppliers-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
+  flex-wrap: wrap;
+}
+.home-supplier {
+  width: 100px;
+}
+
 /**
 /*~~~~~~~~~~~~~~~~//
 /* HOME
 /* SUPPLIER-FORM
 /* AUDIT-FORM
+/* AUDIT-PAGE
 /*~~~~~~~~~~~~~~~~//
 **/
 .supplier-form-wrapper,

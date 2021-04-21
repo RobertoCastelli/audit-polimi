@@ -36,6 +36,38 @@ const ContextProvider = (props) => {
   const [monthText, setMonthText] = useState("");
   const [year, setYear] = useState("");
   const [uploadFile, setUploadFile] = useState(logo)
+  // SIGN IN
+  const [user, setUser] = useState({email: '', password: ''})
+
+  // CHECK USER STATE
+	useEffect(
+		() =>
+			auth.onAuthStateChanged((user) => {
+				if (user) {
+					const email = auth.currentUser.email
+					const userName = email.substring(0, email.lastIndexOf("@"))
+          console.log(`${userName}`)
+				} else {
+					console.log("user signed out")
+				}
+			}),
+		[]
+	)
+	// SING IN
+
+	const handleSignIn = async (e) => {
+		e.preventDefault()
+		await auth
+			.signInWithEmailAndPassword(user.email, user.password)
+			.then(() => (window.location = "/"))
+			.catch((err) => console.log(`${err.message}`))
+	}
+
+	// SIGN OUT
+	const handleSignOut = async (e) => {
+		e.preventDefault()
+		await auth.signOut()
+	}
 
   // DELETE ALL DB
   const deleteAllDb = () => {
@@ -173,7 +205,12 @@ const ContextProvider = (props) => {
         month,
         year,
         uploadFile,
-        handleUploadFile
+        handleUploadFile,
+        // SIGN IN
+        user,
+        setUser,
+        handleSignIn,
+        handleSignOut
       }}
     >
       {props.children}

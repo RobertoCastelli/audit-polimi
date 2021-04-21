@@ -5,12 +5,20 @@ import { FcDeleteDatabase } from "react-icons/fc"
 import { DataContext } from "../context"
 
 const Home = () => {
-  const { deleteAllDb } = useContext(DataContext)
+  const { deleteAllDb, suppliersOptionList } = useContext(DataContext)
 
   return (
     <div className="home-wrapper">
       <h3 className="home-title">welcome!</h3>
-
+      <div className="home-suppliers-wrapper">
+        {suppliersOptionList.map((supplier, i) => {
+          return (
+            <button key={i} className="home-supplier">
+              {supplier}
+            </button>
+          )
+        })}
+      </div>
       <button onClick={() => deleteAllDb()}>
         <FcDeleteDatabase size={20} />
         <div>
