@@ -1,16 +1,14 @@
 import React, { useContext } from "react"
-import { Link } from "react-router-dom"
 // REACT ICONS
-import { AiOutlineHome } from "react-icons/ai"
-import { BsPersonCheck } from "react-icons/bs"
+import { BsPersonCheck, BsPersonDash } from "react-icons/bs"
 // CONTEXT
 import { DataContext } from "../context"
 
 const Auth = () => {
-  const { user, setUser, handleSignIn } = useContext(DataContext)
+  const { user, setUser, handleSignIn, handleSignOut } = useContext(DataContext)
   return (
     <div className="auth-wrapper">
-      <h3>authentication</h3>
+      <h3 className="auth-title">authentication</h3>
       <form className="auth-input" onSubmit={handleSignIn}>
         <input
           type="email"
@@ -30,19 +28,24 @@ const Auth = () => {
           value={user.password}
           required
         />
-        <button className="btn-auth-submit" type="submit">
+        <button
+          className="btn-auth-submit"
+          type="submit"
+          style={{ color: "green" }}
+        >
           <BsPersonCheck size={20} />
         </button>
       </form>
-      <div className="auth-in-buttons-home">
-        <Link to="/">
-          <button className="btn-auth-out-home" type="button" name="auth-out">
-            <AiOutlineHome size={20} />
-          </button>
-          <button className="btn-auth-home" type="button" name="home">
-            <AiOutlineHome size={20} />
-          </button>
-        </Link>
+      <div className="auth-buttons">
+        <button
+          className="btn-auth-out"
+          onClick={handleSignOut}
+          type="button"
+          name="auth-out"
+          style={{ color: "brown" }}
+        >
+          <BsPersonDash size={20} />
+        </button>
       </div>
     </div>
   )

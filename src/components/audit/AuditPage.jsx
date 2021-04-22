@@ -4,7 +4,7 @@ import logo from "../../images/logo.png"
 import ReactToPrint from "react-to-print"
 // REACT ICONS
 import { GrDocumentPdf } from "react-icons/gr"
-import { FcPicture } from "react-icons/fc"
+import { FcGallery } from "react-icons/fc"
 // CONTEXT
 import { DataContext } from "../../context"
 
@@ -144,7 +144,7 @@ const AuditPage = () => {
               multiple
               onChange={handleUploadFile}
             />
-            <FcPicture size={28} />
+            <FcGallery size={28} />
           </label>
         </div>
       </div>

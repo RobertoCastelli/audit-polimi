@@ -61,8 +61,14 @@ footer {
 /*~~~~~~~~~~~~~~~//
 **/
 .header-wrapper {
-  text-align: center;
   text-transform: uppercase;
+  text-align: center;
+}
+
+.header-display-name {
+  display: flex;
+  color: var(--green);
+  text-transform: lowercase;
 }
 
 /**
@@ -115,18 +121,21 @@ footer {
 /* SUPPLIER-FORM
 /* AUDIT-FORM
 /* AUDIT-PAGE
+/* AUTH
 /*~~~~~~~~~~~~~~~~//
 **/
 .supplier-form-wrapper,
 .audit-form-wrapper,
-.home-wrapper {
+.home-wrapper,
+.auth-wrapper {
   max-width: 320px;
   margin: auto;
   text-align: center;
 }
 .supplier-form-title,
 .audit-form-title,
-.home-title {
+.home-title,
+.auth-title {
   text-transform: uppercase;
   margin: 3rem;
 }
@@ -138,7 +147,9 @@ footer {
 .audit-form-ditta,
 .audit-form-date,
 .audit-form-time,
-.audit-form-edificio {
+.audit-form-edificio,
+.auth-email,
+.auth-password {
   margin-bottom: 0.5rem;
 }
 .supplier-form-icon {
