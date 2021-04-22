@@ -6,8 +6,8 @@ import SignUp from "./SignUp"
 const Auth = () => {
   return (
     <>
-      <SignIn />
       <SignOut />
+      <SignIn />
       <SignUp />
     </>
   )

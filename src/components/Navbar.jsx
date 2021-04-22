@@ -1,15 +1,11 @@
-import React, { useContext } from "react"
+import React from "react"
 // ROUTER
 import { Link, NavLink } from "react-router-dom"
 // REACT ICONS
 import icona from "../images/icona.png"
-import { FcKey, FcHome, FcAddDatabase, FcSurvey } from "react-icons/fc"
-// CONTEXT
-import { DataContext } from "../context"
+import { FcKey, FcHome, FcAddDatabase } from "react-icons/fc"
 
 const Navbar = () => {
-  const { resetAuditPage } = useContext(DataContext)
-
   return (
     <>
       <nav className="navbar-wrapper">
@@ -41,18 +37,6 @@ const Navbar = () => {
                 <FcAddDatabase size={20} />
               </div>
               <div>supplier</div>
-            </NavLink>
-          </li>
-          <li onClick={() => resetAuditPage()}>
-            <NavLink
-              to="/audit"
-              activeClassName="navbar-li-active"
-              className="navbar-li"
-            >
-              <div className="navbar-li-icon">
-                <FcSurvey size={20} />
-              </div>
-              <div>audit</div>
             </NavLink>
           </li>
           <li>

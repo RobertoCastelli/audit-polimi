@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 import firebase from "firebase/app"
 import logo from "./images/logo.png"
 import { db, auth } from "./firebase"
-import { edifici } from "./edifici"
-import { mesi } from "./mesi"
+import { edifici } from "./components/content/edifici"
+import { mesi } from "./components/content/mesi"
 
 export const DataContext = React.createContext()
 
@@ -23,14 +23,13 @@ const ContextProvider = (props) => {
   const [supplierNomeAlt, setSupplierNomeAlt] = useState("")
   const [supplierCognomeAlt, setSupplierCognomeAlt] = useState("")
   // AUDIT-FORM
-  const [suppliersOptionList, setSuppliersOptionList] = useState([])
-  const [selectedSupplier, setSelectedSupplier] = useState("")
+  const [suppliersList, setSuppliersList] = useState([])
   const [giorno, setGiorno] = useState(today)
   const [orario, setOrario] = useState(time)
   const [selectedEdifici, setSelectedEdifici] = useState("B1")
   const [isGenerated, setIsGenerated] = useState(false)
   // AUDIT-PAGE
-  const [supplierData, setSupplierData] = useState([])
+  const [supplierData, setSupplierData] = useState({})
   const [day, setDay] = useState("")
   const [month, setMonth] = useState("")
   const [monthText, setMonthText] = useState("")
@@ -40,10 +39,11 @@ const ContextProvider = (props) => {
   const [user, setUser] = useState({ nickname: "", email: "", password: "" })
   const [displayName, setDisplayName] = useState("")
 
-  // GET INPUT VALUE ON CHANGE
-  const handleChange = (e) =>
-    setUser({ ...user, [e.target.name]: e.target.value })
-
+  /**
+   * -------------
+   *     AUTH
+   * -------------
+   */
   // SING IN
   const handleSignIn = (e) => {
     e.preventDefault()
@@ -53,14 +53,6 @@ const ContextProvider = (props) => {
       .then(() => (window.location = "/")) //FIXME: da migliorare per non caricare tutta la pagina
       .catch((err) => alert(err.message))
   }
-  //CHECK USER STATUS (SIGN IN - SIGN OUT)
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      user
-        ? setDisplayName(user.displayName)
-        : setDisplayName("user not authorized")
-    })
-  }, [])
 
   // SIGN UP
   const handleSignUp = (e) => {
@@ -79,8 +71,42 @@ const ContextProvider = (props) => {
     window.location = "/"
   }
 
+  // GET INPUT VALUE ON CHANGE
+  const handleChange = (e) =>
+    setUser({ ...user, [e.target.name]: e.target.value })
+
+  //CHECK USER STATUS (SIGN IN - SIGN OUT)
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      user
+        ? setDisplayName(user.displayName)
+        : setDisplayName("user not authorized")
+    })
+  }, [])
+
   // CLEAR FIELDS
-  const clearFields = (e) => (e.target.value = "")
+  const clearFields = (e) => e.target.reset()
+
+  /**
+   * --------------
+   *      HOME
+   * --------------
+   */
+
+  // GET SUPPLIER DATA FROM DB
+  const getSupplierData = (ditta) => {
+    db.collection("suppliers")
+      .where("ditta", "==", ditta)
+      .onSnapshot((snapshot) =>
+        snapshot.docs.map((doc) => setSupplierData(doc.data()))
+      )
+  }
+  // POPULATE SUPPLIER SELECT -> OPTION LIST IN ADD-AUDIT
+  useEffect(() => {
+    db.collection("suppliers").onSnapshot((snapshot) =>
+      setSuppliersList(snapshot.docs.map((doc) => doc.data().ditta))
+    )
+  }, [])
 
   // DELETE ALL DB
   const deleteAllDb = () => {
@@ -91,7 +117,11 @@ const ContextProvider = (props) => {
         .then((snapshot) => snapshot.forEach((doc) => doc.ref.delete()))
         .catch((error) => alert(`error occured: ${error.message}`))
   }
-
+  /**
+   * --------------
+   *    SUPPLIER
+   * --------------
+   */
   // ADD SUPPLIER DATA TO DB
   const handleSubmitSupplier = (e) => {
     e.preventDefault()
@@ -109,27 +139,13 @@ const ContextProvider = (props) => {
       })
       .then((doc) => alert(`supplier written ID: ${doc.id}`))
       .catch((error) => console.log(`error occured: ${error.message}`))
-    // CLEAR ALL FIELDS
-    setDitta("")
-    setLotto("")
-    setCig("")
-    setOggetto("")
-    setSupplierNome("")
-    setSupplierCognome("")
-    setSupplierNomeAlt("")
-    setSupplierCognomeAlt("")
   }
 
-  // GET SUPPLIER DATA FROM DB
-  const getSupplierData = (ditta) => {
-    db.collection("suppliers")
-      .where("ditta", "==", ditta)
-      .get()
-      .then((snapshot) =>
-        snapshot.docs.map((doc) => setSupplierData(doc.data()))
-      )
-  }
-
+  /**
+   * --------------
+   *   AUDIT-FORM
+   * --------------
+   */
   // GET SELECTED TEXTUAL MONTH
   const getTextMonth = (monthNumber) => {
     const monthTemp = mesi.filter((mese) => monthNumber === mese.numero)
@@ -139,7 +155,6 @@ const ContextProvider = (props) => {
   // SEND AUDIT-FORM DATA TO AUDIT-PAGE
   const handleSubmitAuditForm = (e) => {
     e.preventDefault()
-    getSupplierData(selectedSupplier) //FIXME: non prende dato al primo rendering. bypassato aggiungendo un button intermedio
     setSelectedEdifici(selectedEdifici)
     setOrario(orario)
     setGiorno(giorno)
@@ -149,18 +164,11 @@ const ContextProvider = (props) => {
     setIsGenerated(true)
   }
 
-  // RESET AUDIT-PAGE STATE TO DEFAULT
-  const resetAuditPage = () => {
-    setIsGenerated(false)
-    setSelectedSupplier("")
-  }
-
-  // POPULATE SUPPLIER SELECT -> OPTION LIST IN ADD-AUDIT
-  useEffect(() => {
-    db.collection("suppliers").onSnapshot((snapshot) =>
-      setSuppliersOptionList(snapshot.docs.map((doc) => [doc.data().ditta]))
-    )
-  }, [])
+  /**
+   * --------------
+   *   AUDIT-PAGE
+   * --------------
+   */
 
   // UPLOAD FILE HANDLER
   const handleUploadFile = (e) => {
@@ -177,6 +185,7 @@ const ContextProvider = (props) => {
       value={{
         // HOME
         deleteAllDb,
+        getSupplierData,
         // ANAGRAFICA SUPPLIER
         ditta,
         setDitta,
@@ -200,13 +209,10 @@ const ContextProvider = (props) => {
         setOrario,
         giorno,
         setGiorno,
-        suppliersOptionList,
-        selectedSupplier,
-        setSelectedSupplier,
+        suppliersList,
         edifici,
         setSelectedEdifici,
         isGenerated,
-        resetAuditPage,
         handleSubmitAuditForm,
         // AUDIT-PAGE
         supplierData,
