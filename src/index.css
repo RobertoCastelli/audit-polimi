@@ -68,7 +68,7 @@ footer {
 .header-display-name {
   display: flex;
   color: var(--green);
-  text-transform: lowercase;
+  text-transform: capitalize;
 }
 
 /**

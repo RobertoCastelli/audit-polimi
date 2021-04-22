@@ -40,22 +40,7 @@ const ContextProvider = (props) => {
   const [user, setUser] = useState({ email: "", password: "" })
   const [displayName, setDisplayName] = useState("user not authorized")
 
-  // CHECK USER STATE
-  useEffect(
-    () =>
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          const email = auth.currentUser.email
-          const userName = email.substring(0, email.lastIndexOf("@")) //FIXME: da migliorare con displayName
-          setDisplayName(userName)
-        } else {
-          console.log("user signed out")
-        }
-      }),
-    []
-  )
   // SING IN
-
   const handleSignIn = async (e) => {
     e.preventDefault()
     await auth
@@ -64,11 +49,24 @@ const ContextProvider = (props) => {
       .catch((err) => setDisplayName(err.message))
   }
 
+  // CHECK USER STATE
+  useEffect(
+    () =>
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          const email = auth.currentUser.email
+          const userName = email.substring(0, email.lastIndexOf("@")).replace('.', ' ') //FIXME: da migliorare con displayName
+          setDisplayName(userName)
+        }
+      }),
+    []
+  )
+
   // SIGN OUT
   const handleSignOut = async (e) => {
     e.preventDefault()
-    setDisplayName("user not authorized")
     await auth.signOut()
+    window.location = "/"
   }
 
   // DELETE ALL DB

@@ -20,6 +20,7 @@ const AuditPage = () => {
     isGenerated,
     uploadFile,
     handleUploadFile,
+    displayName,
   } = useContext(DataContext)
 
   const auditRef = React.useRef()
@@ -48,6 +49,7 @@ const AuditPage = () => {
                   )
                 )
               })}
+              <li>{displayName} - tecnico AGIS</li>
             </ul>
             <div className="audit-page-bold-italic">premesso</div>
             <div className="audit-page-section">
