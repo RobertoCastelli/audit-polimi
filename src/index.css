@@ -68,7 +68,6 @@ footer {
 .header-display-name {
   display: flex;
   color: var(--green);
-  text-transform: capitalize;
 }
 
 /**
@@ -127,7 +126,9 @@ footer {
 .supplier-form-wrapper,
 .audit-form-wrapper,
 .home-wrapper,
-.auth-wrapper {
+.sign-in-wrapper,
+.sign-up-wrapper,
+.sign-out-wrapper {
   max-width: 320px;
   margin: auto;
   text-align: center;
@@ -135,7 +136,9 @@ footer {
 .supplier-form-title,
 .audit-form-title,
 .home-title,
-.auth-title {
+.sign-in-title,
+.sign-up-title,
+.sign-out-title {
   text-transform: uppercase;
   margin: 3rem;
 }
@@ -148,8 +151,11 @@ footer {
 .audit-form-date,
 .audit-form-time,
 .audit-form-edificio,
-.auth-email,
-.auth-password {
+.sign-in-email,
+.sign-in-password,
+.sign-up-email,
+.sign-up-password,
+.sign-up-nickname {
   margin-bottom: 0.5rem;
 }
 .supplier-form-icon {

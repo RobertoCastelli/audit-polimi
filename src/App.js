@@ -8,7 +8,7 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import AddSupplier from './components/AddSupplier'
 import AddAudit from './components/audit/AddAudit'
-import Auth from './components/Auth'
+import Auth from './components/auth/Auth'
 import AuditPage from './components/audit/AuditPage'
 
 function App() {

@@ -37,37 +37,50 @@ const ContextProvider = (props) => {
   const [year, setYear] = useState("")
   const [uploadFile, setUploadFile] = useState(logo)
   // SIGN IN
-  const [user, setUser] = useState({ email: "", password: "" })
-  const [displayName, setDisplayName] = useState("user not authorized")
+  const [user, setUser] = useState({ nickname: "", email: "", password: "" })
+  const [displayName, setDisplayName] = useState("")
+
+  // GET INPUT VALUE ON CHANGE
+  const handleChange = (e) =>
+    setUser({ ...user, [e.target.name]: e.target.value })
 
   // SING IN
-  const handleSignIn = async (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault()
-    await auth
+    auth
       .signInWithEmailAndPassword(user.email, user.password)
-      .then(() => (window.location = "/"))
-      .catch((err) => setDisplayName(err.message))
+      .then((res) => setDisplayName(res.user.displayName))
+      .then(() => (window.location = "/")) //FIXME: da migliorare per non caricare tutta la pagina
+      .catch((err) => alert(err.message))
   }
+  //CHECK USER STATUS (SIGN IN - SIGN OUT)
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      user
+        ? setDisplayName(user.displayName)
+        : setDisplayName("user not authorized")
+    })
+  }, [])
 
-  // CHECK USER STATE
-  useEffect(
-    () =>
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          const email = auth.currentUser.email
-          const userName = email.substring(0, email.lastIndexOf("@")).replace('.', ' ') //FIXME: da migliorare con displayName
-          setDisplayName(userName)
-        }
-      }),
-    []
-  )
+  // SIGN UP
+  const handleSignUp = (e) => {
+    e.preventDefault()
+    auth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then((res) => res.user.updateProfile({ displayName: user.nickname }))
+      .then(() => alert(`${user.nickname} signed up succesfully!`))
+      .catch((error) => alert(error.message))
+  }
 
   // SIGN OUT
-  const handleSignOut = async (e) => {
+  const handleSignOut = (e) => {
     e.preventDefault()
-    await auth.signOut()
+    auth.signOut()
     window.location = "/"
   }
+
+  // CLEAR FIELDS
+  const clearFields = (e) => (e.target.value = "")
 
   // DELETE ALL DB
   const deleteAllDb = () => {
@@ -76,7 +89,7 @@ const ContextProvider = (props) => {
         .collection("suppliers")
         .get()
         .then((snapshot) => snapshot.forEach((doc) => doc.ref.delete()))
-        .catch((error) => console.log(`error occured: ${error.message}`))
+        .catch((error) => alert(`error occured: ${error.message}`))
   }
 
   // ADD SUPPLIER DATA TO DB
@@ -209,8 +222,11 @@ const ContextProvider = (props) => {
         user,
         setUser,
         displayName,
+        handleChange,
         handleSignIn,
         handleSignOut,
+        handleSignUp,
+        clearFields,
       }}
     >
       {props.children}
