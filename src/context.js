@@ -27,9 +27,9 @@ const ContextProvider = (props) => {
   const [giorno, setGiorno] = useState(today)
   const [orario, setOrario] = useState(time)
   const [selectedEdifici, setSelectedEdifici] = useState("B1")
-  const [isGenerated, setIsGenerated] = useState(false)
+
   // AUDIT-PAGE
-  const [supplierData, setSupplierData] = useState({})
+  const [supplierData, setSupplierData] = useState([])
   const [day, setDay] = useState("")
   const [month, setMonth] = useState("")
   const [monthText, setMonthText] = useState("")
@@ -161,7 +161,6 @@ const ContextProvider = (props) => {
     setDay(giorno.substring(8))
     setMonth(giorno.substring(6, 7))
     setYear(giorno.substring(0, 4))
-    setIsGenerated(true)
   }
 
   /**
@@ -212,7 +211,7 @@ const ContextProvider = (props) => {
         suppliersList,
         edifici,
         setSelectedEdifici,
-        isGenerated,
+
         handleSubmitAuditForm,
         // AUDIT-PAGE
         supplierData,
