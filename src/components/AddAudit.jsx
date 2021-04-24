@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 // REACT ICONS
 import { FcAdvance, FcDocument } from "react-icons/fc"
 // CONTEXT
-import { DataContext } from "../../context"
+import { DataContext } from "../context"
 
 const AddAudit = () => {
   const {

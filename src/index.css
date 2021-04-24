@@ -68,6 +68,7 @@ footer {
 .header-display-name {
   display: flex;
   color: var(--green);
+  font-weight: bold;
 }
 
 /**
@@ -162,7 +163,9 @@ footer {
 .supplier-form-icon {
   margin-top: 1.5rem;
 }
-input,
+input[type="text"],
+input[type="date"],
+input[type="time"],
 textarea,
 button,
 select,
@@ -230,7 +233,7 @@ li input {
   grid-template-rows: 1fr auto;
   grid-template-areas:
     "logo audit-content ."
-    "logo piepagina .";
+    ". piepagina .";
 }
 .logo {
   grid-area: logo;
@@ -275,7 +278,6 @@ li input {
   align-self: flex-end;
   text-align: left;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   font-size: 0.7rem;
 }

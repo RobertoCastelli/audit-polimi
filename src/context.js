@@ -4,6 +4,7 @@ import logo from "./images/logo.png"
 import { db, auth } from "./firebase"
 import { edifici } from "./components/content/edifici"
 import { mesi } from "./components/content/mesi"
+import { auditList } from "./components/content/auditList"
 
 export const DataContext = React.createContext()
 
@@ -26,7 +27,7 @@ const ContextProvider = (props) => {
   const [suppliersList, setSuppliersList] = useState([])
   const [giorno, setGiorno] = useState(today)
   const [orario, setOrario] = useState(time)
-  const [monthText, setMonthText] = useState('')
+  const [monthText, setMonthText] = useState("")
   const [selectedEdifici, setSelectedEdifici] = useState("B1")
   // AUDIT-PAGE
   const [supplierData, setSupplierData] = useState([])
@@ -151,7 +152,6 @@ const ContextProvider = (props) => {
   // SEND AUDIT-FORM DATA TO AUDIT-PAGE
   const handleSubmitAuditForm = (e) => {
     e.preventDefault()
-  
   }
 
   /**
@@ -210,6 +210,7 @@ const ContextProvider = (props) => {
         selectedEdifici,
         uploadFile,
         handleUploadFile,
+        auditList,
         // SIGN IN
         user,
         setUser,
