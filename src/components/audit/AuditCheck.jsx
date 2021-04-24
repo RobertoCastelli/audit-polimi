@@ -20,15 +20,11 @@ const AuditCheck = () => {
         <tbody>
           {auditList.map((elem, i) => {
             return (
-              <tr className="audit-check-list">
-                <td className="audit-check-intervento" name={i}>
-                  {elem.intervento}
-                </td>
-                <td className="audit-check-periodicita" name={i}>
-                  {elem.periodicita}
-                </td>
-                <td className="audit-check-eseguito" name={i}>
-                  <input type="checkbox" name={i} />
+              <tr className="audit-check-list" key={i}>
+                <td className="audit-check-intervento">{elem.intervento}</td>
+                <td className="audit-check-periodicita">{elem.periodicita}</td>
+                <td className="audit-check-eseguito">
+                  <input type="checkbox" defaultChecked name={i} />
                 </td>
               </tr>
             )

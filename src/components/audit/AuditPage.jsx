@@ -12,12 +12,14 @@ import AuditFirme from "./AuditFirme"
 import AuditPremesso from "./AuditPremesso"
 import AuditVerbalizza from "./AuditVerbalizza"
 import AuditReferenti from "./AuditReferenti"
+import AuditIntestazione from "./AuditIntestazione"
+import AuditNote from "./AuditNote"
 // CONTEXT
 import { DataContext } from "../../context"
-import AuditIntestazione from "./AuditIntestazione"
+import AuditImages from "./AuditImages"
 
 const AuditPage = () => {
-  const { supplierData, uploadFile, handleUploadFile } = useContext(DataContext)
+  const { supplierData, handleUploadFile } = useContext(DataContext)
 
   const auditRef = React.useRef()
 
@@ -31,17 +33,13 @@ const AuditPage = () => {
             <AuditReferenti />
             <AuditPremesso />
             <AuditVerbalizza />
-            <br />
             <AuditCheck />
-            <img
-              className="audit-page-image"
-              src={uploadFile}
-              alt="upload-file"
-            />
+            <AuditNote />
             <AuditFirme />
+            <AuditImages />
+            <AuditPiePagina />
           </div>
         )}
-        <AuditPiePagina />
       </div>
 
       <div className="audit-page-buttons">

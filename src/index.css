@@ -10,6 +10,7 @@
   --white: rgb(244, 244, 244);
   --real-white: rgb(255, 255, 255);
   --lightgrey: rgb(211, 211, 211);
+  --lessgrey: rgb(245, 245, 245);
   --green: rgb(95, 158, 160);
 }
 
@@ -232,7 +233,7 @@ li input {
   font-family: "Courier New", Courier, monospace;
   background-color: var(--real-white);
   display: grid;
-  grid-template-columns: 150px 1fr 100px;
+  grid-template-columns: 130px 1fr 80px;
   grid-template-rows: 1fr auto;
   grid-template-areas:
     "logo audit-content ."
@@ -306,4 +307,30 @@ li input {
   justify-content: center;
   box-shadow: none;
   cursor: pointer;
+}
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* AUDIT-CHECK
+/*~~~~~~~~~~~~~~~//
+**/
+.audit-check-wrapper {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+table,
+th,
+td {
+  border: 1px solid var(--dark);
+}
+th {
+  background-color: var(--lightgrey);
+  text-align: center;
+  padding: 0.5rem;
+}
+tr:nth-child(even) {
+  background-color: var(--lessgrey);
+}
+.audit-check-periodicita,
+.audit-check-eseguito {
+  text-align: center;
 }
