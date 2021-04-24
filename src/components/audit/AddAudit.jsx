@@ -12,10 +12,9 @@ const AddAudit = () => {
     setGiorno,
     orario,
     setOrario,
-    month,
-    getTextMonth,
     edifici,
     setSelectedEdifici,
+    getMonthText,
     supplierData,
     handleSubmitAuditForm,
   } = useContext(DataContext)
@@ -24,16 +23,20 @@ const AddAudit = () => {
     <div className="audit-form-wrapper">
       <h3 className="supplier-form-title">supplier preview</h3>
       <form onSubmit={handleSubmitAuditForm}>
-        <div className="supplier-form-ditta">{supplierData.ditta}</div>
-        <div className="supplier-form-ditta">{supplierData.oggetto}</div>
-        <div className="supplier-form-ditta">{supplierData.lotto}</div>
-        <div className="supplier-form-ditta">{supplierData.cig}</div>
-        {supplierData.length !== 0 &&
-          supplierData.referenti.map((ref, i) => (
-            <div key={i}>
-              {ref.nome} {ref.cognome}
-            </div>
-          ))}
+        <div className="supplier-form-preview">
+          <div className="supplier-form-ditta">
+            {supplierData.ditta || "no data"}
+          </div>
+          <div className="supplier-form-ditta">{supplierData.oggetto}</div>
+          <div className="supplier-form-ditta">{supplierData.lotto}</div>
+          <div className="supplier-form-ditta">{supplierData.cig}</div>
+          {supplierData.length !== 0 &&
+            supplierData.referenti.map((ref, i) => (
+              <div key={i}>
+                {ref.nome} {ref.cognome}
+              </div>
+            ))}
+        </div>
         <h3 className="audit-form-title">generate audit</h3>
         <div className="audit-form-date">
           <input
@@ -61,11 +64,16 @@ const AddAudit = () => {
           </select>
         </div>
         <div className="audit-form-buttons">
-          <Link type="submit" to="/audit-page">
-            <button onClick={() => getTextMonth(parseInt(month))}>
-              <FcAdvance size={20} />
-              <FcDocument size={20} />
-            </button>
+          <Link to="/audit-page">
+            {supplierData.length !== 0 && (
+              <button
+                type="submit"
+                onClick={() => getMonthText(giorno.substring(5, 7))}
+              >
+                <FcAdvance size={20} />
+                <FcDocument size={20} />
+              </button>
+            )}
           </Link>
         </div>
       </form>

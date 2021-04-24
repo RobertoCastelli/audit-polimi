@@ -26,14 +26,10 @@ const ContextProvider = (props) => {
   const [suppliersList, setSuppliersList] = useState([])
   const [giorno, setGiorno] = useState(today)
   const [orario, setOrario] = useState(time)
+  const [monthText, setMonthText] = useState('')
   const [selectedEdifici, setSelectedEdifici] = useState("B1")
-
   // AUDIT-PAGE
   const [supplierData, setSupplierData] = useState([])
-  const [day, setDay] = useState("")
-  const [month, setMonth] = useState("")
-  const [monthText, setMonthText] = useState("")
-  const [year, setYear] = useState("")
   const [uploadFile, setUploadFile] = useState(logo)
   // SIGN IN
   const [user, setUser] = useState({ nickname: "", email: "", password: "" })
@@ -147,20 +143,15 @@ const ContextProvider = (props) => {
    * --------------
    */
   // GET SELECTED TEXTUAL MONTH
-  const getTextMonth = (monthNumber) => {
+  const getMonthText = (monthNumber) => {
     const monthTemp = mesi.filter((mese) => monthNumber === mese.numero)
-    month !== "" && setMonthText(monthTemp[0].mese)
+    setMonthText(monthTemp[0].mese)
   }
 
   // SEND AUDIT-FORM DATA TO AUDIT-PAGE
   const handleSubmitAuditForm = (e) => {
     e.preventDefault()
-    setSelectedEdifici(selectedEdifici)
-    setOrario(orario)
-    setGiorno(giorno)
-    setDay(giorno.substring(8))
-    setMonth(giorno.substring(6, 7))
-    setYear(giorno.substring(0, 4))
+  
   }
 
   /**
@@ -208,19 +199,15 @@ const ContextProvider = (props) => {
         setOrario,
         giorno,
         setGiorno,
-        suppliersList,
         edifici,
+        monthText,
+        getMonthText,
+        suppliersList,
         setSelectedEdifici,
-
         handleSubmitAuditForm,
         // AUDIT-PAGE
         supplierData,
         selectedEdifici,
-        monthText,
-        getTextMonth,
-        day,
-        month,
-        year,
         uploadFile,
         handleUploadFile,
         // SIGN IN

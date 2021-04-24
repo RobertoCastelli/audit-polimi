@@ -1,50 +1,50 @@
 export const mesi = [
 	{
 		mese: 'gennaio',
-		numero: 1,
+		numero: '01',
 	},
 	{
 		mese: 'febbraio',
-		numero: 2,
+		numero: '02',
 	},
 	{
 		mese: 'marzo',
-		numero: 3,
+		numero: '03',
 	},
 	{
 		mese: 'aprile',
-		numero: 4,
+		numero: '04',
 	},
 	{
 		mese: 'maggio',
-		numero: 5,
+		numero: '05',
 	},
 	{
 		mese: 'giugno',
-		numero: 6,
+		numero: '06',
 	},
 	{
 		mese: 'luglio',
-		numero: 7,
+		numero: '07',
 	},
 	{
 		mese: 'agosto',
-		numero: 8,
+		numero: '08',
 	},
 	{
 		mese: 'settembre',
-		numero: 9,
+		numero: '09',
 	},
 	{
 		mese: 'ottobre',
-		numero: 10,
+		numero: '10',
 	},
 	{
 		mese: 'novembre',
-		numero: 11,
+		numero: '11',
 	},
 	{
 		mese: 'dicembre',
-		numero: 12,
+		numero: '12',
 	},
 ]
