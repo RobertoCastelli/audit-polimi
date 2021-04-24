@@ -82,8 +82,7 @@ const ContextProvider = (props) => {
   }, [])
 
   // CLEAR FIELDS
-  const clearFields = (e) => e.target.reset()
-
+  const clearFields = (e) => e.target.reset() //FIXME: not working
   /**
    * --------------
    *      HOME
