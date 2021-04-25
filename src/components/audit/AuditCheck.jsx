@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import { DataContext } from "../../context"
 
 const AuditCheck = () => {
-  const { auditList, calculateChecked } = useContext(DataContext)
+  const { auditCheckList, calculateChecked } = useContext(DataContext)
 
   return (
     <div className="audit-check-wrapper">
@@ -13,23 +13,21 @@ const AuditCheck = () => {
       <table className="audit-check-content">
         <thead>
           <tr>
+            <th>ID</th>
             <th>intervento</th>
             <th>periodicità</th>
             <th>eseguito</th>
           </tr>
         </thead>
         <tbody>
-          {auditList.map((elem, i) => {
+          {auditCheckList.map((elem) => {
             return (
-              <tr className="audit-check-list" key={i}>
+              <tr className="audit-check-list" key={elem.id}>
+                <td className="audit-check-id">{elem.id}</td>
                 <td className="audit-check-intervento">{elem.intervento}</td>
                 <td className="audit-check-periodicita">{elem.periodicita}</td>
                 <td className="audit-check-eseguito">
-                  <input
-                    name={i}
-                    type="checkbox"
-                    onChange={() => calculateChecked()}
-                  />
+                  <input type="checkbox" onChange={() => calculateChecked()} />
                 </td>
               </tr>
             )

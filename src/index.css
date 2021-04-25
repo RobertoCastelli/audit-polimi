@@ -376,7 +376,8 @@ tr:nth-child(even) {
   padding: 0.3rem;
 }
 .audit-check-periodicita,
-.audit-check-eseguito {
+.audit-check-eseguito,
+.audit-check-id {
   text-align: center;
 }
 /**
@@ -387,6 +388,16 @@ tr:nth-child(even) {
 .audit-result-wrapper {
   text-align: center;
   margin: 1rem;
+}
+meter {
+  height: 3rem;
+  width: 100%;
+}
+meter::-webkit-meter-bar,
+meter::-webkit-meter-even-less-good-value,
+meter::-webkit-meter-optimum-value,
+meter::-webkit-meter-suboptimum-value {
+  transition: all 1s ease-in;
 }
 
 /**

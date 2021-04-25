@@ -32,7 +32,8 @@ const ContextProvider = (props) => {
   // AUDIT-PAGE
   const [supplierData, setSupplierData] = useState([])
   const [uploadFile, setUploadFile] = useState(logo)
-  const [result, setResult] = useState(100)
+  const [result, setResult] = useState(0)
+  const [auditCheckList, setAuditCheckList] = useState(auditList)
   // SIGN IN
   const [user, setUser] = useState({ nickname: "", email: "", password: "" })
   const [displayName, setDisplayName] = useState("")
@@ -174,7 +175,7 @@ const ContextProvider = (props) => {
       ".audit-check-eseguito input"
     )
     const filterChecked = [...checkBoxList].filter((ch) => ch.checked)
-    setResult((filterChecked.length / checkBoxList.length) * 100)
+    setResult(Math.floor((filterChecked.length / checkBoxList.length) * 100))
   }
 
   // RENDER
@@ -221,6 +222,7 @@ const ContextProvider = (props) => {
         auditList,
         result,
         calculateChecked,
+        auditCheckList,
         // SIGN IN
         user,
         setUser,
