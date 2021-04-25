@@ -12,6 +12,7 @@
   --lightgrey: rgb(211, 211, 211);
   --lessgrey: rgb(245, 245, 245);
   --green: rgb(95, 158, 160);
+  --lightgreen: rgb(95, 158, 160, 0.8);
 }
 
 body {
@@ -65,7 +66,6 @@ footer {
   text-transform: uppercase;
   text-align: center;
 }
-
 .header-display-name {
   display: flex;
   color: var(--green);
@@ -105,7 +105,6 @@ footer {
 .navbar-li-icon {
   text-align: center;
 }
-
 .home-suppliers-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -164,6 +163,39 @@ footer {
 .supplier-form-icon {
   margin-top: 1.5rem;
 }
+fieldset {
+  text-align: left;
+  border-radius: 0.5rem;
+  border-color: var(--lightgreen);
+  position: relative;
+  box-shadow: -5px -5px 10px var(--real-white), 5px 5px 20px var(--lightgrey);
+}
+legend {
+  color: var(--green);
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  padding: 0 0.5rem;
+}
+fieldset::before {
+  position: absolute;
+  content: "";
+  border: 15px solid var(--lightgreen);
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  width: 0;
+  height: 0;
+  top: -17px;
+  bottom: 0;
+  right: 0;
+  left: -2px;
+}
+ul {
+  list-style-type: circle;
+  padding: 0 1rem;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="time"],

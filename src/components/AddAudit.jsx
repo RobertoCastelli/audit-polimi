@@ -23,20 +23,22 @@ const AddAudit = () => {
     <div className="audit-form-wrapper">
       <h3 className="supplier-form-title">supplier preview</h3>
       <form onSubmit={handleSubmitAuditForm}>
-        <div className="supplier-form-preview">
-          <div className="supplier-form-ditta">
+        <fieldset className="supplier-form-preview">
+          <legend className="supplier-form-ditta">
             {supplierData.ditta || "no data"}
-          </div>
-          <div className="supplier-form-ditta">{supplierData.oggetto}</div>
-          <div className="supplier-form-ditta">{supplierData.lotto}</div>
-          <div className="supplier-form-ditta">{supplierData.cig}</div>
-          {supplierData.length !== 0 &&
-            supplierData.referenti.map((ref, i) => (
-              <div key={i}>
-                {ref.nome} {ref.cognome}
-              </div>
-            ))}
-        </div>
+          </legend>
+          <ul>
+            <li className="supplier-form-ditta">AQ {supplierData.oggetto}</li>
+            <li className="supplier-form-ditta">Lotto {supplierData.lotto}</li>
+            <li className="supplier-form-ditta">CIG {supplierData.cig}</li>
+            {supplierData.length !== 0 &&
+              supplierData.referenti.map((ref, i) => (
+                <li key={i}>
+                  Ref. {ref.nome || "n.n."} {ref.cognome}
+                </li>
+              ))}
+          </ul>
+        </fieldset>
         <h3 className="audit-form-title">generate audit</h3>
         <div className="audit-form-date">
           <input
