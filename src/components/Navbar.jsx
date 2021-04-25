@@ -1,8 +1,8 @@
 import React from "react"
+import icona from "../images/icona.png"
 // ROUTER
 import { Link, NavLink } from "react-router-dom"
 // REACT ICONS
-import icona from "../images/icona.png"
 import { FcKey, FcHome, FcAddDatabase } from "react-icons/fc"
 
 const Navbar = () => {

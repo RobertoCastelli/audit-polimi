@@ -1,8 +1,9 @@
 import React, { useContext } from "react"
+// CONTEXT
 import { DataContext } from "../../context"
 
 const AuditCheck = () => {
-  const { auditList } = useContext(DataContext)
+  const { auditList, calculateChecked } = useContext(DataContext)
 
   return (
     <div className="audit-check-wrapper">
@@ -24,7 +25,11 @@ const AuditCheck = () => {
                 <td className="audit-check-intervento">{elem.intervento}</td>
                 <td className="audit-check-periodicita">{elem.periodicita}</td>
                 <td className="audit-check-eseguito">
-                  <input type="checkbox" defaultChecked name={i} />
+                  <input
+                    name={i}
+                    type="checkbox"
+                    onChange={() => calculateChecked()}
+                  />
                 </td>
               </tr>
             )

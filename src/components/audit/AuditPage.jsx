@@ -17,6 +17,7 @@ import AuditNote from "./AuditNote"
 // CONTEXT
 import { DataContext } from "../../context"
 import AuditImages from "./AuditImages"
+import AuditResult from "./AuditResult"
 
 const AuditPage = () => {
   const { supplierData, handleUploadFile } = useContext(DataContext)
@@ -34,6 +35,7 @@ const AuditPage = () => {
             <AuditPremesso />
             <AuditVerbalizza />
             <AuditCheck />
+            <AuditResult />
             <AuditNote />
             <AuditFirme />
             <AuditImages />

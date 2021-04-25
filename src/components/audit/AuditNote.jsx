@@ -2,14 +2,25 @@ import React from "react"
 
 const AuditNote = () => {
   return (
-    <div>
-      <textarea name="" id="" cols="30" rows="10" placeholder="note"></textarea>
-      <div>
-        <div htmlFor="difformita">le difformità verranno evase entro il:</div>
-        <input type="date" />
+    <div className="audit-note-wrapper">
+      <div className="audit-note-title">note</div>
+      <textarea
+        className="audit-note-textarea"
+        name=""
+        id=""
+        rows="5"
+        placeholder="note"
+      ></textarea>
+
+      <div className="audit-note-difformita">
+        le difformità verranno evase entro il:
       </div>
-      <div>il presente verbale viene chiuso alle ore:</div>
-      <input type="time" name="" id="" />
+      <input className="audit-note-giorno" type="date" />
+
+      <div className="audit-note-chiusura">
+        il presente verbale viene chiuso alle ore:
+      </div>
+      <input className="audit-note-ore" type="time" />
     </div>
   )
 }

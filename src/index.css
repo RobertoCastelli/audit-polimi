@@ -12,7 +12,7 @@
   --lightgrey: rgb(211, 211, 211);
   --lessgrey: rgb(245, 245, 245);
   --green: rgb(95, 158, 160);
-  --lightgreen: rgb(95, 158, 160, 0.8);
+  --lightgreen: rgb(95, 158, 160, 0.5);
 }
 
 body {
@@ -140,7 +140,10 @@ footer {
 .home-title,
 .sign-in-title,
 .sign-up-title,
-.sign-out-title {
+.sign-out-title,
+.audit-check-title,
+.audit-note-title,
+.audit-images-title {
   text-transform: uppercase;
   margin: 3rem;
 }
@@ -166,13 +169,13 @@ footer {
 fieldset {
   text-align: left;
   border-radius: 0.5rem;
-  border-color: var(--lightgreen);
+  border-color: var(--green);
   position: relative;
   box-shadow: -5px -5px 10px var(--real-white), 5px 5px 20px var(--lightgrey);
 }
 legend {
   color: var(--green);
-  text-align: center;
+  margin-left: 1rem;
   text-transform: uppercase;
   font-weight: bold;
   border-radius: 0.5rem;
@@ -181,7 +184,7 @@ legend {
 fieldset::before {
   position: absolute;
   content: "";
-  border: 15px solid var(--lightgreen);
+  border: 15px solid var(--green);
   border-bottom-color: transparent;
   border-right-color: transparent;
   width: 0;
@@ -192,7 +195,7 @@ fieldset::before {
   left: -2px;
 }
 ul {
-  list-style-type: circle;
+  list-style: none;
   padding: 0 1rem;
 }
 
@@ -215,10 +218,14 @@ select,
   font-family: "Montserrat", sans-serif;
   width: 100%;
 }
-input,
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
 textarea,
-select,
-label {
+select {
   transition: all 0.2s ease-in-out;
   box-shadow: 2px 2px 3px inset var(--lightgrey),
     -5px -5px 10px inset var(--real-white);
@@ -265,7 +272,7 @@ li input {
   font-family: "Courier New", Courier, monospace;
   background-color: var(--real-white);
   display: grid;
-  grid-template-columns: 130px 1fr 80px;
+  grid-template-columns: 8rem 1fr 5rem;
   grid-template-rows: 1fr auto;
   grid-template-areas:
     "logo audit-content ."
@@ -296,6 +303,7 @@ li input {
 .audit-page-section {
   margin-top: 1rem;
 }
+
 .audit-page-firme {
   margin-top: 1rem;
   display: flex;
@@ -321,10 +329,9 @@ li input {
   width: 25%;
   margin: 1rem;
 }
-.audit-page-image {
+.audit-images-image {
   display: flex;
   flex-wrap: wrap;
-  margin: 1rem;
   width: 35%;
 }
 .audit-page-buttons {
@@ -344,12 +351,15 @@ li input {
 /**
 /*~~~~~~~~~~~~~~~//
 /* AUDIT-CHECK
+/* AUDIT-NOTE
 /*~~~~~~~~~~~~~~~//
 **/
-.audit-check-wrapper {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+.audit-check-title,
+.audit-images-title,
+.audit-note-title {
+  text-align: center;
+  font-weight: bold;
 }
-table,
 th,
 td {
   border: 1px solid var(--dark);
@@ -362,7 +372,60 @@ th {
 tr:nth-child(even) {
   background-color: var(--lessgrey);
 }
+.audit-check-intervento {
+  padding: 0.3rem;
+}
 .audit-check-periodicita,
 .audit-check-eseguito {
   text-align: center;
+}
+/**
+/*~~~~~~~~~~~~~~~//
+/* AUDIT-RESULT
+/*~~~~~~~~~~~~~~~//
+**/
+.audit-result-wrapper {
+  text-align: center;
+  margin: 1rem;
+}
+
+/**
+/*~~~~~~~~~~~~~~~//
+/* AUDIT-NOTE
+/*~~~~~~~~~~~~~~~//
+**/
+.audit-note-wrapper {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 10rem;
+  grid-template-rows: auto;
+  gap: 1rem;
+  align-items: center;
+  grid-template-areas:
+    "title title"
+    "note note"
+    "difformita giorno"
+    "chiusura ore";
+}
+.audit-note-textarea {
+  grid-area: note;
+  resize: vertical;
+  box-shadow: none !important;
+}
+.audit-note-difformita {
+  grid-area: difformita;
+}
+.audit-note-chiusura {
+  grid-area: chiusura;
+}
+.audit-note-giorno {
+  grid-area: giorno;
+  box-shadow: none !important;
+}
+.audit-note-ore {
+  grid-area: ore;
+  box-shadow: none !important;
+}
+.audit-note-title {
+  grid-area: title;
 }

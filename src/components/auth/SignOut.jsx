@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 // REACT ICONS
 import { BsPersonDash } from "react-icons/bs"
-
+// CONTEXT
 import { DataContext } from "../../context"
 
 const SignOut = () => {
@@ -10,7 +10,6 @@ const SignOut = () => {
     <>
       <div className="sign-out-wrapper">
         <h3 className="sign-out-title">sign out</h3>
-
         <button
           className="btn-sign-out"
           type="button"

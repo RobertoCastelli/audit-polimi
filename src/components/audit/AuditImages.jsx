@@ -5,8 +5,9 @@ import { DataContext } from "../../context"
 const AuditImages = () => {
   const { uploadFile } = useContext(DataContext)
   return (
-    <div>
-      <img className="audit-page-image" src={uploadFile} alt="upload-file" />
+    <div className="audit-images-wrapper">
+      <h3 className="audit-images-title">allegati</h3>
+      <img className="audit-images-image" src={uploadFile} alt="upload-file" />
     </div>
   )
 }

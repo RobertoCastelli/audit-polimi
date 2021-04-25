@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 // ROUTER
 import { Link } from "react-router-dom"
 // REACT ICONS
-import { FcAdvance, FcDocument } from "react-icons/fc"
+import { FcAdvance, FcInspection } from "react-icons/fc"
 // CONTEXT
 import { DataContext } from "../context"
 
@@ -73,7 +73,7 @@ const AddAudit = () => {
                 onClick={() => getMonthText(giorno.substring(5, 7))}
               >
                 <FcAdvance size={20} />
-                <FcDocument size={20} />
+                <FcInspection size={20} />
               </button>
             )}
           </Link>
