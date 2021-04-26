@@ -33,7 +33,7 @@ const ContextProvider = (props) => {
   const [supplierData, setSupplierData] = useState([])
   const [uploadFile, setUploadFile] = useState(logo)
   const [result, setResult] = useState(0)
-  const [auditCheckList, setAuditCheckList] = useState(auditList)
+
   // SIGN IN
   const [user, setUser] = useState({ nickname: "", email: "", password: "" })
   const [displayName, setDisplayName] = useState("")
@@ -222,7 +222,6 @@ const ContextProvider = (props) => {
         auditList,
         result,
         calculateChecked,
-        auditCheckList,
         // SIGN IN
         user,
         setUser,

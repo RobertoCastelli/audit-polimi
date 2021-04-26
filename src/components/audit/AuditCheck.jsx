@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import { DataContext } from "../../context"
 
 const AuditCheck = () => {
-  const { auditCheckList, calculateChecked } = useContext(DataContext)
+  const { auditList, calculateChecked } = useContext(DataContext)
 
   return (
     <div className="audit-check-wrapper">
@@ -20,7 +20,7 @@ const AuditCheck = () => {
           </tr>
         </thead>
         <tbody>
-          {auditCheckList.map((elem) => {
+          {auditList.map((elem) => {
             return (
               <tr className="audit-check-list" key={elem.id}>
                 <td className="audit-check-id">{elem.id}</td>
