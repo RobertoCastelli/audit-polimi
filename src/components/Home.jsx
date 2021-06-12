@@ -21,9 +21,9 @@ const Home = () => {
               <button
                 type="button"
                 className="home-supplier"
-                onClick={() => getSupplierData(supplier)}
+                onClick={() => getSupplierData(supplier.ditta)}
               >
-                {supplier}
+                {supplier.ditta} "{supplier.tipo}"
               </button>
             </Link>
           )

@@ -13,10 +13,15 @@ const AuditCheck = () => {
       <table className="audit-check-content">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>intervento</th>
-            <th>periodicità</th>
-            <th>eseguito</th>
+            <th rowSpan="2">ID</th>
+            <th rowSpan="2">intervento</th>
+            <th rowSpan="2">periodicità</th>
+            <th colSpan="3">eseguito</th>
+          </tr>
+          <tr>
+            <th>SI</th>
+            <th>NO</th>
+            <th>N/A</th>
           </tr>
         </thead>
         <tbody>
@@ -26,8 +31,29 @@ const AuditCheck = () => {
                 <td className="audit-check-id">{elem.id}</td>
                 <td className="audit-check-intervento">{elem.intervento}</td>
                 <td className="audit-check-periodicita">{elem.periodicita}</td>
-                <td className="audit-check-eseguito">
-                  <input type="checkbox" onChange={() => calculateChecked()} />
+                <td className="audit-check-eseguito" id={elem.id}>
+                  <input
+                    type="radio"
+                    name={elem.id}
+                    onClick={calculateChecked}
+                    value="1"
+                  />
+                </td>
+                <td className="audit-check-eseguito" id={elem.id}>
+                  <input
+                    type="radio"
+                    name={elem.id}
+                    onClick={calculateChecked}
+                    value="-1"
+                  />
+                </td>
+                <td className="audit-check-eseguito" id={elem.id}>
+                  <input
+                    type="radio"
+                    name={elem.id}
+                    onClick={calculateChecked}
+                    value="0"
+                  />
                 </td>
               </tr>
             )

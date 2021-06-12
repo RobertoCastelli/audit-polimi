@@ -372,6 +372,9 @@ th {
 tr:nth-child(even) {
   background-color: var(--lessgrey);
 }
+td {
+  height: 100px;
+}
 .audit-check-intervento {
   padding: 0.3rem;
 }
@@ -379,6 +382,9 @@ tr:nth-child(even) {
 .audit-check-eseguito,
 .audit-check-id {
   text-align: center;
+}
+.audit-check-eseguito input[type="radio"] {
+  padding: 3rem;
 }
 /**
 /*~~~~~~~~~~~~~~~//

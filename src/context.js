@@ -84,7 +84,8 @@ const ContextProvider = (props) => {
   }, [])
 
   // CLEAR FIELDS
-  const clearFields = (e) => e.target.reset() //FIXME: not working
+  const clearFields = (e) => e.target.value = "" 
+  
   /**
    * --------------
    *      HOME
@@ -102,7 +103,7 @@ const ContextProvider = (props) => {
   // POPULATE SUPPLIER SELECT -> OPTION LIST IN ADD-AUDIT
   useEffect(() => {
     db.collection("suppliers").onSnapshot((snapshot) =>
-      setSuppliersList(snapshot.docs.map((doc) => doc.data().ditta))
+      setSuppliersList(snapshot.docs.map((doc) => doc.data()))
     )
   }, [])
 
@@ -171,11 +172,10 @@ const ContextProvider = (props) => {
   }
   // CALCULATE % RESULT
   const calculateChecked = () => {
-    const checkBoxList = document.querySelectorAll(
-      ".audit-check-eseguito input"
-    )
-    const filterChecked = [...checkBoxList].filter((ch) => ch.checked)
-    setResult(Math.floor((filterChecked.length / checkBoxList.length) * 100))
+    const getAllRadio = [...document.querySelectorAll('input[type=radio]:checked')]
+    console.log(getAllRadio)
+    let sumRadioValue = getAllRadio.reduce((acc, val) => acc + Number(val.value), 0)
+    setResult(Math.floor((sumRadioValue / getAllRadio.length) * 100)) 
   }
 
   // RENDER
