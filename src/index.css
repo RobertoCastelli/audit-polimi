@@ -329,10 +329,11 @@ li input {
   width: 25%;
   margin: 1rem;
 }
+
 .audit-images-image {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   width: 35%;
+  margin: 1rem;
 }
 .audit-page-buttons {
   display: flex;

@@ -7,12 +7,19 @@ const AuditImages = () => {
   return (
     <div className="audit-images-wrapper">
       <h3 className="audit-images-title">allegati</h3>
-      <img
-        className="audit-images-image"
-        src={uploadFile}
-        mutiple
-        alt="upload-file"
-      />
+      {uploadFile.map((image, i) => {
+        return (
+          <div>
+            ID #{i + 1}
+            <img
+              className="audit-images-image"
+              src={image}
+              key={image}
+              alt="uploaded-file"
+            />
+          </div>
+        )
+      })}
     </div>
   )
 }

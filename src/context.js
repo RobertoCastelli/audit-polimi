@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import firebase from "firebase/app"
-import logo from "./images/logo.png"
+
 import { db, auth } from "./firebase"
 import { edifici } from "./components/content/edifici"
 import { mesi } from "./components/content/mesi"
@@ -31,7 +31,7 @@ const ContextProvider = (props) => {
   const [selectedEdifici, setSelectedEdifici] = useState("B1")
   // AUDIT-PAGE
   const [supplierData, setSupplierData] = useState([])
-  const [uploadFile, setUploadFile] = useState(logo)
+  const [uploadFile, setUploadFile] = useState([])
   const [result, setResult] = useState(0)
 
   // SIGN IN
@@ -164,16 +164,20 @@ const ContextProvider = (props) => {
 
   // UPLOAD FILE HANDLER
   const handleUploadFile = (e) => {
-    const reader = new FileReader()
+    if (e.target.files) {
+      const fileArray = Array.from(e.target.files).map(file => URL.createObjectURL(file))
+      setUploadFile(prevImages => prevImages.concat(fileArray))
+    }
+  /*    const reader = new FileReader()
     reader.onload = () => {
       reader.readyState === 2 && setUploadFile(reader.result)
     }
-    reader.readAsDataURL(e.target.files[0])
+    reader.readAsDataURL(e.target.files[0]) */
   }
+
   // CALCULATE % RESULT
   const calculateChecked = () => {
     const getAllRadio = [...document.querySelectorAll('input[type=radio]:checked')]
-    console.log(getAllRadio)
     let sumRadioValue = getAllRadio.reduce((acc, val) => acc + Number(val.value), 0)
     setResult(Math.floor((sumRadioValue / getAllRadio.length) * 100)) 
   }
@@ -239,3 +243,14 @@ const ContextProvider = (props) => {
 }
 
 export default ContextProvider
+
+/**
+ * TODO: 
+ * save to PDF
+ * send email
+ * add icons to supplier type
+ * 
+ * FIXME: paging layout
+ * 
+ * 
+ */
